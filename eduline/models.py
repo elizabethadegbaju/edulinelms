@@ -83,15 +83,11 @@ class Book(models.Model):
 class Checkout(models.Model):
     student = models.ForeignKey(to=Student, on_delete=models.DO_NOTHING)
     book = models.ForeignKey(to=Book, on_delete=models.CASCADE)
-    booked = models.BooleanField(default=False)
+    reserved = models.BooleanField(default=False)
     collected = models.BooleanField(default=False)
-    booked_date = models.DateTimeField()
-    collected_date = models.DateTimeField()
-    returned_date = models.DateTimeField()
+    reserved_date = models.DateTimeField(null=True)
+    collected_date = models.DateTimeField(null=True)
+    returned_date = models.DateTimeField(null=True)
 
     def __str__(self):
-        if self.collected == True:
-            return self.student.__str__() + " - " + self.book.__str__()
-
-    # TODO: Initial fine for first day default is 500 naira
-    # TODO: Additional days are 100 naira per day
+        return self.student.__str__() + " - " + self.book.__str__()

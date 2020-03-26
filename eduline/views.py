@@ -15,23 +15,6 @@ def about(request):
     return render(request, 'about-us.html')
 
 
-@login_required
-def books(request):
-    book_list = Book.objects.all()
-    page = request.GET.get('page', 1)
-    paginator = Paginator(book_list, 15)
-    try:
-        books = paginator.get_page(page)
-    except PageNotAnInteger:
-        books = paginator.get_page(1)
-    except InvalidPage:
-        books = paginator.get_page(paginator.num_pages)
-
-    categories = Book.objects.values_list('category', flat=True).distinct()
-    authors = Book.objects.values_list('author', flat=True).distinct()
-    return render(request, 'books.html', context={'books': books, 'categories': categories, 'authors': authors})
-
-
 def faq(request):
     # TODO: Edit FAQ
     return render(request, 'faq.html')
@@ -45,7 +28,7 @@ def dashboard(request):
 @login_required
 def book(request, pk):
     book = Book.objects.get(id=pk)
-    # TODO: LOad book context in template
+    # similar_books = book.category.aggregate('')
     return render(request, 'book.html', context={'book': book})
 
 
@@ -89,3 +72,12 @@ def search(request):
         books = paginator.get_page(paginator.num_pages)
 
     return render(request, 'books.html', context={'filter': book_filter, 'books': books})
+
+
+def reserve(request, pk):
+    book = Book.objects.get(id=pk)
+    record = Checkout.objects.create(student=request.user.student, book=book, reserved=True, reserved_date=now())
+    record.save()
+    book.reserve_book()
+    book.save()
+    return render(request, 'index.html')

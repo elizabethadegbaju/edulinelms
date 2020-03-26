@@ -12,23 +12,23 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'about' %}">About Us</a>
                     </li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'contact' %}">Contact
-                        Us</a>
-                        {% if user.is_authenticated %}
+                        Us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link"
+                                                                href="{% url 'books' %}">Books</a></li>
+                    {% if user.is_authenticated %}
+                        {% if user.is_staff %}
                             <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                        href="{% url 'books' %}">Books</a></li>
-                            {% if user.is_staff %}
-                                <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                            href="{% url 'dashboard' %}">Dashboard</a>
-                                </li>
-                            {% endif %}
-                            <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                        href="{% url 'logout' %}">Logout</a></li>
-                        {% else %}
-                            <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                        href="{% url 'login' %}">Login</a></li>
-                            <li class="nav-item" role="presentation">
-                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+                                                                        href="{% url 'dashboard' %}">Dashboard</a>
+                            </li>
                         {% endif %}
+                        <li class="nav-item" role="presentation"><a class="nav-link"
+                                                                    href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li class="nav-item" role="presentation"><a class="nav-link"
+                                                                    href="{% url 'login' %}">Login</a></li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

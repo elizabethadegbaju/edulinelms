@@ -16,31 +16,25 @@
                             <div class="d-none d-md-block">
                                 <form method="get">
                                     <div class="filters">
-                                        <div class="filter-item">
-                                            <div class="form-group">
-                                                {{ filter.form.title.label_tag }}
-                                                {% render_field filter.form.title class="form-control" %}
+                                        <div class="form-group">
+                                            {{ filter.form.title.label_tag }}
+                                            {% render_field filter.form.title class="form-control" %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ filter.form.author.label_tag }}
+                                            {% render_field filter.form.author class="form-control" %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ filter.form.category.label_tag }}
+                                            <div>
+                                                {% for choice in filter.form.category %}
+                                                    <label class="checkbox-inline">
+                                                        {{ choice.tag }} {{ choice.choice_label }}
+                                                    </label>
+                                                {% endfor %}
                                             </div>
                                         </div>
-                                        <div class="filter-item">
-                                            <div class="form-group">
-                                                {{ filter.form.author.label_tag }}
-                                                {% render_field filter.form.author class="form-control" %}
-                                            </div>
-                                        </div>
-                                        <div class="filter-item">
-                                            <div class="form-group">
-                                                {{ filter.form.category.label_tag }}
-                                                <div>
-                                                    {% for choice in filter.form.category %}
-                                                        <label class="checkbox-inline">
-                                                            {{ choice.tag }} {{ choice.choice_label }}
-                                                        </label>
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-info">
                                             <span class="icon-magnifier"></span> Search
                                         </button>
                                     </div>
@@ -67,6 +61,12 @@
                                                     </h6>
                                                 </div>
                                             </div>
+                                        </div>
+                                    {% empty %}
+                                        <div class="text-center">
+                                            <h5 class="text-secondary m-4">Sorry, no books match your request. Check
+                                                back
+                                                tomorrow.</h5>
                                         </div>
                                     {% endfor %}
 
