@@ -7,41 +7,41 @@
         <section class="clean-block clean-form dark">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Log In</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in,
-                        mattis vitae leo.</p>
+                    <h2 class="text-info">Welcome back, scholar!</h2>
+                    <p>“Reading is essential for those who seek to rise above the ordinary.” – Jim Rohn</p>
                 </div>
-                {% if form.non_field_errors %}
-                    {% for error in form.non_field_errors %}
-                        <div class="alert alert-danger alert-dismissable" role="alert">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            {{ error|striptags }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-                {% if next %}
-                    {% if user.is_authenticated %}
-                        <div class="alert alert-danger alert-dismissable" role="alert">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            Your account doesn't have access to this page. To proceed, please login with an account that
-                            has
-                            access.
-                        </div>
-                    {% else %}
-                        <div class="alert alert-danger alert-dismissable" role="alert">
-                            <button type="button" class="close" data-dismiss="alert">&times;
-                            </button>
-                            Please login to see this page.
-                        </div>
-                    {% endif %}
-                {% endif %}
                 <form action="{% url 'login' %}" method="post">
                     {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger alert-dismissable" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ error|striptags }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% if next %}
+                        {% if user.is_authenticated %}
+                            <div class="alert alert-danger alert-dismissable" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                Your account doesn't have access to this page. To proceed, please login with an account
+                                that as access.
+                            </div>
+                        {% else %}
+                            <div class="alert alert-danger alert-dismissable" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">&times;
+                                </button>
+                                Please login to see this page.
+                            </div>
+                        {% endif %}
+                    {% endif %}
                     <div class="form-group"><label for="username">Username</label><input class="form-control item"
                                                                                          type="text"
-                                                                                         id="username"></div>
+                                                                                         id="username" name="username">
+                    </div>
                     <div class="form-group"><label for="password">Password</label><input class="form-control"
-                                                                                         type="password" id="password">
+                                                                                         type="password" id="password"
+                                                                                         name="password">
                     </div>
                     {#                <div class="form-group">#}
                     {#                    <div class="form-check"><input class="form-check-input" type="checkbox" id="checkbox"><label#}
@@ -49,6 +49,8 @@
                     {#                </div>#}
                     <button class="btn btn-primary btn-block" type="submit">Log In</button>
                 </form>
+                <div class="text-center m-4">
+                    <a href="{% url 'register' %}" class="text-info">New here? Create an account.</a></div>
             </div>
         </section>
     </main>

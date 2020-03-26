@@ -1,15 +1,15 @@
 {% extends 'base_nav.html' %}
 {% block title %}
-    Signup | EduLine
+    Register | EduLine
 {% endblock %}
 {% block content %}
     <main class="page registration-page">
         <section class="clean-block clean-form dark">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Registration</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in,
-                        mattis vitae leo.</p>
+                    <h2 class="text-info">Create an Account with EduLine</h2>
+                    <p>“Employ your time in improving yourself by other men’s writings so that you shall come easily by
+                        what others have labored hard for.” – Socrates</p>
                 </div>
                 <form action="{% url 'register' %}" method="post">
                     {% csrf_token %}
@@ -23,21 +23,34 @@
                                                                                            id="last_name"
                                                                                            name="last_name"
                                                                                            required></div>
+                    <div class="form-group"><label for="matric_number">Matric Number</label><input
+                            class="form-control item"
+                            type="text"
+                            id="matric_number"
+                            name="matric_number"
+                            required></div>
+                    <div class="form-group"><label for="program">Program of Study</label><input
+                            class="form-control item"
+                            type="text"
+                            id="program" name="program"
+                            required></div>
                     <div class="form-group"><label for="username">Username</label><input class="form-control item"
                                                                                          type="text"
                                                                                          id="username" name="username"
                                                                                          required></div>
+                    <div class="form-group"><label for="email">Email</label><input class="form-control item"
+                                                                                   type="email"
+                                                                                   id="email" name="email" required>
+                    </div>
                     <div class="form-group"><label for="password">Password</label><input class="form-control item"
                                                                                          type="password" id="password"
                                                                                          name="password"
                                                                                          required>
                     </div>
-                    <div class="form-group"><label for="email">Email</label><input class="form-control item"
-                                                                                   type="email"
-                                                                                   id="email" name="email" required>
-                    </div>
-                    <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+                    <button class="btn btn-primary btn-block" type="submit">Register</button>
                 </form>
+                <div class="text-center m-4">
+                    <a href="{% url 'login' %}" class="text-info">Already have an account? Click to login.</a></div>
             </div>
         </section>
     </main>
