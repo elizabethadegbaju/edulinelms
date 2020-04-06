@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block styles %}
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="{% static 'assets/vendor/font-awesome/css/font-awesome.min.css' %}">
+    <!-- jQuery Circle-->
+    <link rel="stylesheet" href="{% static 'assets/css/grasp_mobile_progress_circle-1.0.0.min.css' %}">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet"
+          href="{% static 'assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css' %}">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="{% static 'assets/css/style.blue.premium.css' %}" id="theme-stylesheet">
+{% endblock %}
+{% block content %}
+    <div>
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+            <div class="side-navbar-wrapper">
+                <!-- Sidebar Header    -->
+                <div class="sidenav-header d-flex align-items-center justify-content-center">
+                    <!-- User Info-->
+                    <div class="sidenav-header-inner text-center">
+                        <h2 class="h5">{{ user.first_name }} {{ user.last_name }}</h2><span>Staff</span>
+                    </div>
+                    <!-- Small Brand information, appears on minimized sidebar-->
+                    <div class="sidenav-header-logo"><a href="{% url 'home' %}" class="brand-small text-center">
+                        <strong>E</strong><strong class="text-primary">D</strong></a></div>
+                </div>
+                <!-- Sidebar Navigation Menus-->
+                <div class="main-menu">
+                    {#            <h5 class="sidenav-heading">Main</h5>#}
+                    <ul id="side-main-menu" class="side-menu list-unstyled">
+                        <li><a href="{% url 'dashboard' %}"> <i class="icon-chart"></i>Dashboard</a></li>
+                        <li>
+                            <a href="#formsDropdown" aria-expanded="false" data-toggle="collapse">
+                                <i class="icon-book-open"></i>Books
+                            </a>
+                            <ul id="formsDropdown" class="collapse list-unstyled ">
+                                <li><a href="{% url 'add_book' %}">Add new book</a></li>
+                                <li><a href="#">View Books</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"> <i class="icon-people"></i>Defaulters</a></li>
+                        <li><a href="{% url 'logout' %}"> <i class="icon-logout"></i>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block main %}
+
+        {% endblock %}
+    </div>
+{% endblock %}
+{% block scripts %}
+    <!-- JavaScript files-->
+    <script src="{% static 'assets/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/grasp_mobile_progress_circle-1.0.0.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/jquery.cookie/jquery.cookie.js' %}"></script>
+    <script src="{% static 'assets/vendor/chart.js/Chart.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/jquery-validation/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'assets/js/charts-home.js' %}"></script>
+    <!-- Main File-->
+    <script src="{% static 'assets/js/front.js' %}"></script>
+
+{% endblock %}

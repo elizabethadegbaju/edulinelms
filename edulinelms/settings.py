@@ -29,16 +29,14 @@ LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'books'
 LOGOUT_REDIRECT_URL = 'home'
 
-ALLOWED_HOSTS = ['silken-phalanx-266122.appspot.com', '127.0.0.1', ]
+ALLOWED_HOSTS = ['silken-phalanx-266122.appspot.com', '127.0.0.1', 'localhost']
 
 # Application definition
-
-# GOOGLE_APPLICATION_CREDENTIALS = os.path.join(BASE_DIR, 'sa.json')
-# DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-# GS_BUCKET_NAME = 'silken-phalanx-266122.appspot.com'
-# GS_FILE_OVERWRITE = False
-# GOOGLE_CLOUD_PROJECT = 'silken-phalanx-266122'
-# GS_PROJECT_ID = 'silken-phalanx-266122'
+GOOGLE_APPLICATION_CREDENTIALS = os.path.join(BASE_DIR, 'sa.json')
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'silken-phalanx-266122.appspot.com'
+GS_FILE_OVERWRITE = False
+SECURE_REDIRECT_EXEMPT = ['check-due-dates/.*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -86,42 +84,42 @@ WSGI_APPLICATION = 'edulinelms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# # [START db_setup]
-# if os.getenv('GAE_APPLICATION', None):
-#     # Running on production App Engine, so connect to Google Cloud SQL using
-#     # the unix socket at /cloudsql/<your-cloudsql-connection string>
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.mysql',
-#             'HOST': '/cloudsql/crystal-ims:us-central1:crystal',
-#             'USER': 'adeotun',
-#             'PASSWORD': '',
-#             'NAME': 'eduline',
-#         }
-#     }
-# else:
-#     # Running locally so connect to either a local MySQL instance or connect
-#     # to Cloud SQL via the proxy.  To start the proxy via command line:
-#     #    $ vcloud_sql_proxy -instances=silken-phalanx-266122:us-central1:eduline=tcp:3306
-#     # See https://cloud.google.com/sql/docs/mysql-connect-proxy
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.mysql',
-#             'HOST': '127.0.0.1',
-#             'PORT': '3306',
-#             'USER': 'adeotun',
-#             'PASSWORD': '',
-#             'NAME': 'eduline',
-#         }
-#     }
-# # [END db_setup]
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+# [START db_setup]
+if os.getenv('GAE_APPLICATION', None):
+    # Running on production App Engine, so connect to Google Cloud SQL using
+    # the unix socket at /cloudsql/<your-cloudsql-connection string>
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '/cloudsql/silken-phalanx-266122:us-central1:eduline',
+            'USER': 'adeotun',
+            'PASSWORD': '',
+            'NAME': 'eduline',
+        }
     }
-}
+else:
+    # Running locally so connect to either a local MySQL instance or connect
+    # to Cloud SQL via the proxy.  To start the proxy via command line:
+    #    $ vcloud_sql_proxy -instances=silken-phalanx-266122:us-central1:eduline=tcp:3306
+    # See https://cloud.google.com/sql/docs/mysql-connect-proxy
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+            'USER': 'adeotun',
+            'PASSWORD': '',
+            'NAME': 'eduline',
+        }
+    }
+# [END db_setup]
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -157,13 +155,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-
-# STATIC_ROOT = 'static'
 MEDIA_ROOT = 'media'
 STATIC_URL = '/static/'
 if os.getenv('GAE_APPLICATION', None):
     STATIC_ROOT = 'static'
 else:
     STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
-# MEDIA_URL = 'https://storage.googleapis.com/crystal-ims.appspot.com/'
-MEDIA_URL = '/media/'
+MEDIA_URL = 'https://storage.googleapis.com/silken-phalanx-266122.appspot.com/'

@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="{% static '/assets/fonts/simple-line-icons.min.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="{% static '/assets/css/styles.min.css' %}">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     {% block styles %}
 
     {% endblock %}
@@ -27,7 +30,7 @@
 {% endblock %}
 
 {% block footer %}
-    <footer class="page-footer dark">
+    <footer class="page-footer dark pt-0">
         <div class="footer-copyright">
             <p>© 2020 Copyright EduLine</p>
         </div>
@@ -38,6 +41,8 @@
 <script src="{% static '/assets/bootstrap/js/bootstrap.min.js' %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
 <script src="{% static '/assets/js/script.min.js' %}"></script>
+{% block scripts %}
+{% endblock %}
 </body>
 
 </html>

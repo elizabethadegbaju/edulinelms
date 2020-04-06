@@ -15,24 +15,33 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="gallery">
-                                    <div class="sp-wrap"><a href="{{ book.image.url }}"><img
+                                    <div class="sp-wrap"><a
+                                            href="https://storage.googleapis.com/silken-phalanx-266122.appspot.com/{{ book.image|urlencode }}"><img
                                             class="img-fluid d-block mx-auto"
-                                            src="{{ book.image.url }}"></a>
+                                            src="https://storage.googleapis.com/silken-phalanx-266122.appspot.com/{{ book.image|urlencode }}"></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="info">
                                     <h3>{{ book.title }}</h3>
-                                    {#                                    <div class="rating"><h4></h4></div>#}
                                     <div class="price">
                                         <h3>{{ book.author }}</h3>
                                     </div>
-                                    <form action="{% url 'reserve'  book.id %}" method="get">
-                                        <button class="btn btn-primary" type="submit"><i class="icon-book-open"></i>Click
-                                            to Reserve
+                                    {% if available %}
+
+                                        <form action="{% url 'reserve'  book.id %}" method="get">
+                                            <button class="btn btn-primary" type="submit"><i class="icon-book-open"></i>Click
+                                                to Reserve
+                                            </button>
+                                        </form>
+                                    {% else %}
+                                        <button class="btn btn-secondary" type="submit" disabled><i
+                                                class="icon-book-open"></i>Click to Reserve
                                         </button>
-                                    </form>
+                                        <h6 class="text-secondary"><em>This book is currently not available for pick
+                                            up. Check back tomorrow.</em></h6>
+                                    {% endif %}
                                     <div class="summary">
                                         <p>{{ book.description|truncatewords:70 }}</p>
                                     </div>
@@ -134,51 +143,23 @@
                         <h3>Other Books in this Category</h3>
                         <div class="items">
                             <div class="row justify-content-center">
-                                <div class="col-sm-6 col-lg-4">
-                                    <div class="clean-related-item">
-                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto"
-                                                                            src="{% static '/assets/img/tech/book.gif' %}"></a>
-                                        </div>
-                                        <div class="related-name"><a href="#">Lorem Ipsum dolor</a>
-                                            <div class="rating"><img src="{% static '/assets/img/star.svg' %}"><img
-                                                    src="{% static '/assets/img/star.svg' %}"><img
-                                                    src="{% static '/assets/img/star.svg' %}"><img
-                                                    src="{% static '/assets/img/star-half-empty.svg' %}"><img
-                                                    src="{% static '/assets/img/star-empty.svg' %}"></div>
-                                            <h4>$300</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4">
-                                    <div class="clean-related-item">
-                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto"
-                                                                            src="{% static '/assets/img/tech/book.gif' %}"></a>
-                                        </div>
-                                        <div class="related-name"><a href="#">Lorem Ipsum dolor</a>
-                                            <div class="rating"><img src="{% static '/assets/img/star.svg' %}"><img
-                                                    src="{% static '/assets/img/star.svg' %}"><img
-                                                    src="{% static '/assets/img/star.svg' %}"><img
-                                                    src="{% static '/assets/img/star-half-empty.svg' %}"><img
-                                                    src="{% static '/assets/img/star-empty.svg' %}"></div>
-                                            <h4>$300</h4>
+                                {% for similar_book in similar_books|slice:3 %}
+                                    <div class="col-sm-6 col-lg-4">
+                                        <div class="clean-related-item">
+                                            <div class="image"><a href="{% url 'book' similar_book.id %}"><img
+                                                    class="img-fluid d-block mx-auto"
+                                                    src="https://storage.googleapis.com/silken-phalanx-266122.appspot.com/{{ similar_book.image|urlencode }}"
+                                                    alt="Book cover for {{ similar_book.title }}"></a>
+                                            </div>
+                                            <div class="related-name"><a
+                                                    href="{% url 'book' similar_book.id %}">{{ similar_book.title }}</a>
+                                                <h4>{{ similar_book.author }}</h4>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4">
-                                    <div class="clean-related-item">
-                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto"
-                                                                            src="{% static '/assets/img/tech/book.gif' %}"></a>
-                                        </div>
-                                        <div class="related-name"><a href="#">Lorem Ipsum dolor</a>
-                                            <div class="rating"><img src="{% static '/assets/img/star.svg' %}"><img
-                                                    src="{% static '/assets/img/star.svg' %}"><img
-                                                    src="{% static '/assets/img/star.svg' %}"><img
-                                                    src="{% static '/assets/img/star-half-empty.svg' %}"><img
-                                                    src="{% static '/assets/img/star-empty.svg' %}"></div>
-                                            <h4>$300</h4>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% empty %}
+                                    <h6 class="text-secondary">This is the only book in this category.</h6>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,8 @@
+cron:
+  - description: "CRON job to check reserved and collected books status and cancel reservation passed the one day limit or charge fines for collected books that have passed their due dates"
+    url: /check-due-dates/
+    schedule: every day 00:00
+    timezone: Africa/Lagos
+    retry_parameters:
+      min_backoff_seconds: 120
+      max_doublings: 5

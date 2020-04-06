@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block nav %}
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="#">EduLine</a>
+        <div class="container"><a class="navbar-brand logo" href="{% url 'home' %}">EduLine</a>
             <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse"
@@ -19,6 +19,10 @@
                         {% if user.is_staff %}
                             <li class="nav-item" role="presentation"><a class="nav-link"
                                                                         href="{% url 'dashboard' %}">Dashboard</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item" role="presentation"><a class="nav-link"
+                                                                        href="{% url 'profile' user.username %}">Profile</a>
                             </li>
                         {% endif %}
                         <li class="nav-item" role="presentation"><a class="nav-link"

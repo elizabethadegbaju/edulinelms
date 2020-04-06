@@ -1,6 +1,9 @@
 {% extends 'base_nav.html' %}
 {% load static %}
 {% load widget_tweaks %}
+{% block title %}
+    Catalogue | EduLine
+{% endblock %}
 {% block content %}
     <main class="page catalog-page">
         <section class="clean-block clean-catalog dark">
@@ -34,7 +37,7 @@
                                                 {% endfor %}
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-info">
+                                        <button type="submit" class="btn btn-info form-control mb-5">
                                             <span class="icon-magnifier"></span> Search
                                         </button>
                                     </div>
@@ -50,7 +53,7 @@
                                                 <div class="image">
                                                     <a href="{% url 'book' book.id %}">
                                                         <img class="img-fluid d-block mx-auto"
-                                                             src="{{ book.image.url }}"
+                                                             src="https://storage.googleapis.com/silken-phalanx-266122.appspot.com/{{ book.image|urlencode }}"
                                                              alt="Book cover for {{ book.title }}"></a>
                                                 </div>
                                                 <div class="product-name text-center">
@@ -69,7 +72,6 @@
                                                 tomorrow.</h5>
                                         </div>
                                     {% endfor %}
-
                                 </div>
                                 <nav>
                                     {% if books.has_other_pages %}

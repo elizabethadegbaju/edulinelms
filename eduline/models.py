@@ -1,16 +1,15 @@
-import os
-
 from django.contrib.auth.models import User
 from django.db import models
+
+
 # Create your models here.
-from django.utils.timezone import now
 
 
 class Student(models.Model):
     user = models.OneToOneField(to=User, on_delete=models.CASCADE)
     matric_number = models.CharField(max_length=20)
     program = models.CharField(max_length=100)
-    outstanding_fine = models.IntegerField(default=0)
+    outstanding_fine = models.DecimalField(default=0, decimal_places=2, max_digits=10)
 
     class Meta:
         ordering = ['matric_number']
@@ -26,7 +25,7 @@ class Student(models.Model):
 
 
 def get_upload_path(instance, filename):
-    return os.path.join('books/covers/', now().date().strftime("%Y/%m/%d"), filename)
+    return 'books/covers/' + filename
 
 
 class Author(models.Model):
@@ -58,7 +57,7 @@ class Book(models.Model):
     quantity_total = models.IntegerField(default=0)
     quantity_collected = models.IntegerField(default=0)
     quantity_reserved = models.IntegerField(default=0)
-    image = models.ImageField(blank=True, upload_to=get_upload_path, default='book.gif')
+    image = models.ImageField(upload_to=get_upload_path, default='book.gif')
 
     class Meta:
         ordering = ['quantity_collected', 'title']
@@ -71,6 +70,12 @@ class Book(models.Model):
 
     def reserve_book(self):
         self.quantity_reserved += 1
+
+    def cancel_reservation(self):
+        self.quantity_reserved -= 1
+
+    def return_book(self):
+        self.quantity_collected -= 1
 
     def collect_book(self, reserved):
         if reserved:
@@ -85,9 +90,28 @@ class Checkout(models.Model):
     book = models.ForeignKey(to=Book, on_delete=models.CASCADE)
     reserved = models.BooleanField(default=False)
     collected = models.BooleanField(default=False)
-    reserved_date = models.DateTimeField(null=True)
-    collected_date = models.DateTimeField(null=True)
-    returned_date = models.DateTimeField(null=True)
+    closed = models.BooleanField(default=False)
+    reserved_date = models.DateTimeField(null=True, blank=True)
+    collected_date = models.DateTimeField(null=True, blank=True)
+    returned_date = models.DateTimeField(null=True, blank=True)
+    fine = models.DecimalField(decimal_places=2, default=0, max_digits=10)
 
     def __str__(self):
         return self.student.__str__() + " - " + self.book.__str__()
+
+    def charge_initial_fine(self):
+        self.fine = 500
+
+    def charge_subsequent_fines(self, days):
+        self.fine = ((days - 1) * 100) + 500
+
+
+class Message(models.Model):
+    name = models.CharField(max_length=100)
+    subject = models.CharField(max_length=200)
+    email = models.EmailField()
+    message = models.TextField()
+    read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.subject + " -- " + self.email

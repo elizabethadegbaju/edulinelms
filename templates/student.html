@@ -1,0 +1,218 @@
+{% extends 'base_nav.html' %}
+{% load static %}
+{% load filters %}
+{% block title %}
+    {{ user.first_name }} {{ user.last_name }}  | EduLine
+{% endblock %}
+{% block styles %}
+    <style>
+
+        .nav .nav-item {
+            position: relative;
+            margin: 0 2px;
+        }
+
+        .nav-pills.nav-pills-icons .nav-item .nav-link {
+            border-radius: 4px;
+        }
+
+        .nav-pills .nav-item .nav-link.active {
+            color: #fff;
+            background-color: #007bff;
+            box-shadow: 0 5px 20px 0 rgba(38, 143, 255, .5), 0 13px 24px -11px rgba(0, 105, 217, .6);
+        }
+
+        .nav-pills .nav-item .nav-link {
+            line-height: 24px;
+            font-size: 12px;
+            font-weight: 500;
+            min-width: 100px;
+            color: #555;
+            transition: all .3s;
+            border-radius: 30px;
+            padding: 10px 15px;
+            text-align: center;
+        }
+
+        .nav-pills .nav-item .nav-link:not(.active):hover {
+            background-color: rgba(200, 200, 200, .2);
+        }
+
+
+        .nav-pills .nav-item i {
+            display: block;
+            font-size: 30px;
+            padding: 15px 0;
+        }
+
+        .tab-space {
+            padding: 20px 0 50px;
+        }
+
+        .nav-pills {
+            border: 0;
+            border-radius: 3px;
+            padding: 0 15px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <main class="page shopping-cart-page">
+        <section class="clean-block clean-cart dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">{{ user.first_name }} {{ user.last_name }}</h2>
+                    <p>{{ user.student.matric_number }}</p>
+                    <p>{{ user.student.program }}</p>
+                    <p><em>{{ user.username }}</em></p>
+                    <p><em>{{ user.email }}</em></p>
+                </div>
+                <div class="content">
+
+                    <div class="row no-gutters">
+                        <div class="col-md-12 col-lg-8">
+                            <div class="row pt-4">
+                                <div class="col-md-6 ml-auto mr-auto">
+                                    <div class="profile-tabs">
+                                        <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="#reserved" role="tab"
+                                                   data-toggle="tab">
+                                                    <i class="icon-lock"></i>
+                                                    Reserved
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#collected" role="tab" data-toggle="tab">
+                                                    <i class="icon-book-open"></i>
+                                                    Collected
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#overdue" role="tab" data-toggle="tab">
+                                                    <i class="icon-clock"></i>
+                                                    Overdue
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-content tab-space">
+                                <div class="tab-pane active text-center gallery" id="reserved">
+                                    <div class="row no-gutters">
+                                        {% for item in pending_history %}
+                                            {% if item.reserved and not item.collected %}
+                                                <div class="col-12 col-md-6 col-lg-4">
+                                                    <div class="clean-product-item">
+                                                        <div class="image">
+                                                            <a href="{% url 'book' item.book.id %}">
+                                                                <img class="img-fluid d-block mx-auto"
+                                                                     src="https://storage.googleapis.com/silken-phalanx-266122.appspot.com/{{ item.book.image|urlencode }}"
+                                                                     alt="Book cover for {{ item.book.title }}"></a>
+                                                        </div>
+                                                        <div class="product-name text-center">
+                                                            <a href="{% url 'book' item.book.id %}">{{ item.book.title }}</a>
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <h6 class="text-info">
+                                                                <em>{{ item.book.author|truncatechars:20 }}</em>
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% empty %}
+                                            <div class="text-center">
+                                                <h5 class="text-secondary m-4">Check our catalogue of books to get
+                                                    started.</h5>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="tab-pane text-center gallery" id="collected">
+                                    <div class="row no-gutters">
+                                        {% for item in pending_history %}
+                                            {% if item.collected %}
+                                                <div class="col-12 col-md-6 col-lg-4">
+                                                    <div class="clean-product-item">
+                                                        <div class="image">
+                                                            <a href="{% url 'book' item.book.id %}">
+                                                                <img class="img-fluid d-block mx-auto"
+                                                                     src="https://storage.googleapis.com/silken-phalanx-266122.appspot.com/{{ item.book.image|urlencode }}"
+                                                                     alt="Book cover for {{ item.book.title }}"></a>
+                                                        </div>
+                                                        <div class="product-name text-center">
+                                                            <a href="{% url 'book' item.book.id %}">{{ item.book.title }}</a>
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <h6 class="text-info">
+                                                                <em>{{ item.book.author|truncatechars:20 }}</em>
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% empty %}
+                                            <div class="text-center">
+                                                <h5 class="text-secondary m-4">Check our catalogue of books to get
+                                                    started.</h5>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="tab-pane text-center gallery" id="overdue">
+                                    <div class="row no-gutters">
+                                        {% for item in pending_history %}
+                                            {% if item.id|is_overdue %}
+                                                <div class="col-12 col-md-6 col-lg-4">
+                                                    <div class="clean-product-item">
+                                                        <div class="image">
+                                                            <a href="{% url 'book' item.book.id %}">
+                                                                <img class="img-fluid d-block mx-auto"
+                                                                     src="https://storage.googleapis.com/silken-phalanx-266122.appspot.com/{{ item.book.image|urlencode }}"
+                                                                     alt="Book cover for {{ item.book.title }}"></a>
+                                                        </div>
+                                                        <div class="product-name text-center">
+                                                            <a href="{% url 'book' item.book.id %}">{{ item.book.title }}</a>
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <h6 class="text-info">
+                                                                <em>{{ item.book.author|truncatechars:20 }}</em>
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% empty %}
+                                            <div class="text-center">
+                                                <h5 class="text-secondary m-4">Check our catalogue of books to get
+                                                    started.</h5>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-4">
+                            <div class="summary">
+                                <h3>Summary</h3>
+                                {% for item in pending_history %}
+                                    <h4><span class="text">{{ item.book.title }}</span><span
+                                            class="price">&#x20a6;{{ item.fine }}</span></h4>
+                                {% endfor %}
+                                <h4><span class="text">Outstanding Fine</span><span
+                                        class="price">&#x20a6;{{ user.student.outstanding_fine }}</span></h4>
+                                <form action="{% url 'contact' %}" method="get">
+                                    <button class="btn btn-primary btn-block btn-lg" type="submit">Lodge a Complain
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
