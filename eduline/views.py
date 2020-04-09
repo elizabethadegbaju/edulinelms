@@ -1,8 +1,9 @@
 from django.contrib.auth.views import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, InvalidPage
+from django.db.models import Sum
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
-from django.utils.timezone import now
+from django.utils.timezone import now, timedelta
 
 from .filters import BookFilter
 from .models import *
@@ -24,7 +25,40 @@ def faq(request):
 @login_required
 def dashboard(request):
     if request.user.is_staff:
-        return render(request, 'dashboard.html')
+        today = now().date()
+        seven_days_ago = today - timedelta(days=7)
+        five_days_ago = today - timedelta(days=5)
+        two_months_ago = today - timedelta(days=60)
+        two_weeks_ago = today - timedelta(weeks=2)
+
+        # number of students that registered in the last seven days:
+        new_students = Student.objects.filter(user__date_joined__range=(seven_days_ago, today)).count()
+
+        # number of book reservations in the last five days:
+        reservations = Checkout.objects.filter(reserved=True).filter(
+            reserved_date__range=(five_days_ago, today)).count()
+
+        # number of book collections in the last five days:
+        collections = Checkout.objects.filter(collected=True).filter(
+            collected_date__range=(five_days_ago, today)).count()
+
+        # number of overdue books in two months:
+        overdue_books = Checkout.objects.filter(overdue=True).filter(
+            collected_date__range=(two_months_ago, today)).count()
+
+        # number of returned books in the last two weeks:
+        returned_books = Checkout.objects.filter(closed=True).filter(
+            returned_date__range=(two_weeks_ago, today)).count()
+
+        # Total outstanding fines:
+        outstanding_fines = Checkout.objects.aggregate(Sum('fine'))
+
+        books = Book.objects.all().count()
+
+        return render(request, 'dashboard.html',
+                      context={'new_students': new_students, 'reservations': reservations, 'collections': collections,
+                               'overdue_books': overdue_books, 'returned_books': returned_books, 'books': books,
+                               'outstanding_fines': outstanding_fines})
     else:
         return redirect('profile', request.user.username)
 
@@ -157,9 +191,11 @@ def check_due_dates(request):
                         pass
                     elif duration_collected.days == 11:
                         item.charge_initial_fine()
+                        item.overdue = True
                         item.save()
                     else:
                         item.charge_subsequent_fines(duration_collected.days - 10)
+                        item.overdue = True
                         item.save()
                     update_student(item.student.id)
     else:
@@ -170,3 +206,16 @@ def check_due_dates(request):
 def add_book(request):
     if request.method == 'GET':
         return render(request, 'book-form.html')
+
+
+def edit_book(request):
+    return render(request, '')
+
+
+def defaulters(request):
+    students = Student.objects.filter(outstanding_fine__gt=0)
+    return render(request, 'defaulters.html', context={'students': students})
+
+
+def messages(request):
+    return render(request, '')

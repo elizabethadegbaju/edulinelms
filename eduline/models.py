@@ -90,6 +90,7 @@ class Checkout(models.Model):
     book = models.ForeignKey(to=Book, on_delete=models.CASCADE)
     reserved = models.BooleanField(default=False)
     collected = models.BooleanField(default=False)
+    overdue = models.BooleanField(default=False)
     closed = models.BooleanField(default=False)
     reserved_date = models.DateTimeField(null=True, blank=True)
     collected_date = models.DateTimeField(null=True, blank=True)
