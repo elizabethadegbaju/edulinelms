@@ -501,7 +501,11 @@
 
                     rs = this.check(checkElement) !== false;
                     result = result && rs;
-                    this.invalid[checkElement.name] = !rs;
+                    if (rs) {
+                        this.invalid[checkElement.name] = false;
+                    } else {
+                        this.invalid[checkElement.name] = true;
+                    }
 
                     if (!this.numberOfInvalids()) {
 

@@ -1,3 +1,21 @@
+/*
+==========================================================
+==========================================================
+
+Bootstrapious Dashboard Template 1.2
+
+PREMIUM VERSION
+
+https://bootstrapious.com/p/bootstrap-4-dashboard-premium
+
+==========================================================
+==========================================================
+*/
+/*
+* ==========================================================
+*     GENERAL
+* ==========================================================
+*/
 .text-bold {
     font-weight: 700;
 }
@@ -40,12 +58,12 @@ span {
     display: inline-block;
 }
 
-.mt-30 {
-    margin-top: 30 !important;
+.mt-30px {
+    margin-top: 30px !important;
 }
 
-.mb-30 {
-    margin-bottom: 30 !important;
+.mb-30px {
+    margin-bottom: 30px !important;
 }
 
 i[class*='icon-'] {
@@ -79,14 +97,14 @@ table {
     right: 0;
     -webkit-transition: width 0.3s linear;
     transition: width 0.3s linear;
-    width: calc(100% - 200);
+    width: calc(100% - 200px);
     background-color: #F4F7FA;
     min-height: 100vh;
-    padding-bottom: 50;
+    padding-bottom: 50px;
 }
 
 .page.active {
-    width: calc(100% - 70);
+    width: calc(100% - 70px);
 }
 
 h2 {
@@ -115,7 +133,7 @@ h2 {
 }
 
 .card {
-    margin-bottom: 30;
+    margin-bottom: 30px;
     -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
@@ -232,7 +250,7 @@ nav.navbar small {
 }
 
 nav.navbar a.navbar-brand {
-    margin-left: 10;
+    margin-left: 10px;
 }
 
 nav.navbar .brand-text {
@@ -269,7 +287,7 @@ nav.navbar .dropdown-menu {
 
 nav.navbar .dropdown-menu .dropdown-item {
     color: #666;
-    padding: 10;
+    padding: 10px;
 }
 
 nav.navbar .dropdown-menu .dropdown-item:active {
@@ -299,8 +317,8 @@ nav.navbar .msg-body span {
 }
 
 nav.navbar .msg-profile {
-    margin-right: 10;
-    width: 50;
+    margin-right: 10px;
+    width: 50px;
 }
 
 nav.navbar .notification-content {
@@ -309,9 +327,9 @@ nav.navbar .notification-content {
 }
 
 nav.navbar a.menu-btn {
-    width: 40;
-    height: 40;
-    line-height: 40;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
     background: #292929;
     color: #fff;
     text-align: center;
@@ -367,9 +385,9 @@ nav.navbar a.menu-btn:hover {
     position: fixed;
     top: 0;
     left: 0;
-    width: 200;
+    width: 200px;
     height: 100%;
-    width: 200;
+    width: 200px;
     text-align: left;
     background: #393836;
     color: #fff;
@@ -386,7 +404,7 @@ nav.navbar a.menu-btn:hover {
 }
 
 .side-navbar.hide {
-    left: -70;
+    left: -70px;
 }
 
 .side-navbar a.brand-small {
@@ -431,7 +449,7 @@ nav.navbar a.menu-btn:hover {
     font-family: 'FontAwesome';
     position: absolute;
     top: 50%;
-    right: 20;
+    right: 20px;
 }
 
 .side-navbar li a[aria-expanded="true"]::before {
@@ -456,7 +474,7 @@ nav.navbar a.menu-btn:hover {
 }
 
 .side-navbar li ul a {
-    padding-left: 20;
+    padding-left: 20px;
     font-size: .85rem;
 }
 
@@ -471,12 +489,12 @@ nav.navbar a.menu-btn:hover {
 .side-navbar .sidenav-header {
     background: #292929;
     padding: 14px;
-    margin-bottom: 10;
+    margin-bottom: 10px;
 }
 
 .side-navbar .sidenav-header img {
-    width: 50;
-    height: 50;
+    width: 50px;
+    height: 50px;
 }
 
 .side-navbar .sidenav-header span {
@@ -485,7 +503,7 @@ nav.navbar a.menu-btn:hover {
 }
 
 .side-navbar .sidenav-header h2 {
-    margin: 10 0 0;
+    margin: 10px 0 0;
     text-transform: uppercase;
     letter-spacing: .1em;
 }
@@ -496,9 +514,9 @@ nav.navbar a.menu-btn:hover {
     font-size: .9rem;
     text-transform: uppercase;
     letter-spacing: .1em;
-    margin-left: 10;
-    margin-top: 10;
-    margin-bottom: 10;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .side-navbar i[class*='icon-'] {
@@ -512,7 +530,7 @@ nav.navbar a.menu-btn:hover {
 
 .side-navbar i {
     font-size: inherit;
-    margin-right: 10;
+    margin-right: 10px;
 }
 
 .side-navbar .badge {
@@ -526,7 +544,7 @@ nav.navbar a.menu-btn:hover {
 }
 
 .side-navbar.shrink {
-    width: 70;
+    width: 70px;
     text-align: center;
 }
 
@@ -565,7 +583,7 @@ nav.navbar a.menu-btn:hover {
 }
 
 .side-navbar.shrink ul li ul a {
-    padding-left: 10;
+    padding-left: 10px;
     font-size: .7rem;
 }
 
@@ -596,12 +614,12 @@ nav.navbar a.menu-btn:hover {
     }
 
     .page.active-sm {
-        width: calc(100% - 70);
+        width: calc(100% - 70px);
     }
 
     .side-navbar {
-        left: -70;
-        width: 70;
+        left: -70px;
+        width: 70px;
         text-align: center;
     }
 
@@ -644,7 +662,7 @@ nav.navbar a.menu-btn:hover {
     }
 
     .side-navbar ul li ul a {
-        padding-left: 10;
+        padding-left: 10px;
         font-size: .7rem;
     }
 
@@ -703,7 +721,7 @@ nav.navbar a.menu-btn:hover {
 }
 
 .dashboard-counts .icon {
-    margin-right: 10;
+    margin-right: 10px;
 }
 
 .dashboard-counts strong {
@@ -721,7 +739,7 @@ nav.navbar a.menu-btn:hover {
 /* DASHBOARD COUNTS MEDIAQUERIES ------------------------- */
 @media (max-width: 991px) {
     .dashboard-counts div[class*='col-'] {
-        margin-bottom: 20;
+        margin-bottom: 20px;
     }
 }
 
@@ -751,7 +769,7 @@ nav.navbar a.menu-btn:hover {
 }
 
 .dashboard-header .check-lists {
-    margin-top: 20;
+    margin-top: 20px;
 }
 
 .dashboard-header .check-lists label {
@@ -760,8 +778,8 @@ nav.navbar a.menu-btn:hover {
 
 .dashboard-header .pie-chart {
     position: relative;
-    width: 300;
-    height: 300;
+    width: 300px;
+    height: 300px;
     max-width: 100%;
     margin: 0 auto;
 }
@@ -773,7 +791,7 @@ nav.navbar a.menu-btn:hover {
 }
 
 .dashboard-header li {
-    margin-bottom: 10;
+    margin-bottom: 10px;
 }
 
 /* DASHBOARD HEADER MEDIAQUERIES ------------------------- */
@@ -785,7 +803,7 @@ nav.navbar a.menu-btn:hover {
     }
 
     .dashboard-header div[class*='col-'] {
-        margin-bottom: 30;
+        margin-bottom: 30px;
     }
 
     .dashboard-header div[class*='col-']:last-of-type {
@@ -794,7 +812,7 @@ nav.navbar a.menu-btn:hover {
 
     .dashboard-header .card {
         background: #fff;
-        padding: 30;
+        padding: 30px;
         -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         height: 100%;
@@ -817,7 +835,7 @@ nav.navbar a.menu-btn:hover {
 
 @media (min-width: 992px) {
     .dashboard-header {
-        margin-bottom: 30;
+        margin-bottom: 30px;
     }
 
     .dashboard-header .card {
@@ -837,13 +855,13 @@ nav.navbar a.menu-btn:hover {
 }
 
 .statistics div[class*='col-'] .card {
-    padding: 20;
+    padding: 20px;
     margin-bottom: 0;
     height: 100%;
 }
 
 .statistics h2 {
-    margin-bottom: 20;
+    margin-bottom: 20px;
 }
 
 .statistics p {
@@ -867,7 +885,7 @@ nav.navbar a.menu-btn:hover {
 
 .statistics .data-usage canvas {
     width: 100%;
-    max-width: 200;
+    max-width: 200px;
     border: none;
 }
 
@@ -889,7 +907,7 @@ nav.navbar a.menu-btn:hover {
 }
 
 .statistics .data-usage p {
-    margin-top: 10;
+    margin-top: 10px;
     margin-bottom: 0;
 }
 
@@ -909,7 +927,7 @@ nav.navbar a.menu-btn:hover {
 }
 
 .statistics .user-activity .page-statistics {
-    margin-top: 20;
+    margin-top: 20px;
 }
 
 .statistics .user-activity .page-statistics strong {
@@ -923,7 +941,7 @@ nav.navbar a.menu-btn:hover {
 @media (max-width: 991px) {
     .statistics div[class*='col-'] .card {
         height: auto;
-        margin-bottom: 30;
+        margin-bottom: 30px;
     }
 
     .statistics div[class*='col-']:last-of-type .card {
@@ -935,11 +953,11 @@ nav.navbar a.menu-btn:hover {
     }
 
     .statistics .data-usage div[class*='col-']:first-of-type {
-        padding-bottom: 20;
+        padding-bottom: 20px;
     }
 
     .statistics .data-usage .gmpc {
-        padding-bottom: 20 !important;
+        padding-bottom: 20px !important;
     }
 
     p {
@@ -959,11 +977,11 @@ nav.navbar a.menu-btn:hover {
 * ==========================================================
 */
 .updates .left-col {
-    padding-right: 20;
+    padding-right: 20px;
 }
 
 .updates .icon {
-    margin-right: 10;
+    margin-right: 10px;
 }
 
 .updates li {
@@ -1042,7 +1060,7 @@ nav.navbar a.menu-btn:hover {
 */
 /*  Daily Feeds ------------------- */
 .daily-feeds a.feed-profile {
-    margin-right: 10;
+    margin-right: 10px;
     width: 45px;
     height: 45px;
 }
@@ -1053,7 +1071,7 @@ nav.navbar a.menu-btn:hover {
 }
 
 .daily-feeds .badge {
-    margin-right: 10;
+    margin-right: 10px;
 }
 
 .daily-feeds strong {
@@ -1068,18 +1086,18 @@ nav.navbar a.menu-btn:hover {
 }
 
 .daily-feeds .message-card {
-    padding: 10;
+    padding: 10px;
     background: #fafafa;
     margin-left: 55px;
-    margin-top: 10;
-    margin-bottom: 10;
+    margin-top: 10px;
+    margin-bottom: 10px;
     -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .daily-feeds .full-date {
     line-height: 0.7em;
-    margin-bottom: 10;
+    margin-bottom: 10px;
 }
 
 .daily-feeds .CTAs a {
@@ -1117,9 +1135,9 @@ nav.navbar a.menu-btn:hover {
 }
 
 .activities .date-holder .icon {
-    width: 30;
-    height: 30;
-    line-height: 30;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
     background: #f5f5f5;
     text-align: center;
     margin: 0;
@@ -1128,13 +1146,13 @@ nav.navbar a.menu-btn:hover {
 
 .activities .date-holder span {
     display: block;
-    margin: 10;
+    margin: 10px;
 }
 
 .activities .content {
     border-left: 1px solid #eee;
-    border-bottom: 20;
-    padding: 10 20;
+    border-bottom: 20px;
+    padding: 10px 20px;
 }
 
 .activities .content strong {
@@ -1185,7 +1203,7 @@ footer.main-footer {
     width: 100%;
     bottom: 0;
     background: #222;
-    padding: 10 0;
+    padding: 10px 0;
 }
 
 footer.main-footer p {
@@ -1292,7 +1310,7 @@ select.form-control option {
     line-height: 1.5;
     color: #495057;
     background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right 0.75rem center;
-    background-size: 8px 10;
+    background-size: 8px 10px;
     border: 1px solid #ced4da;
     border-radius: 0;
 }
@@ -1317,11 +1335,11 @@ select.form-control option {
 }
 
 .form-group {
-    margin-bottom: 10;
+    margin-bottom: 10px;
 }
 
 .form-group div[class*='col-'] {
-    margin-bottom: 10;
+    margin-bottom: 10px;
 }
 
 .input-group-text {
@@ -1332,14 +1350,14 @@ select.form-control option {
 
 .form-group-material {
     position: relative;
-    margin-bottom: 30;
+    margin-bottom: 30px;
 }
 
 input.input-material {
     width: 100%;
     border: none;
     border-bottom: 1px solid #eee;
-    padding: 10 0;
+    padding: 10px 0;
     color: #868e96;
     font-weight: 300;
 }
@@ -1370,7 +1388,7 @@ input.input-material ~ label {
 
 input.input-material ~ label.active {
     font-size: 0.8rem;
-    top: -10;
+    top: -10px;
     color: #2b90d9;
 }
 
@@ -1430,7 +1448,7 @@ input.form-control-custom + label {
 }
 
 input.form-control-custom + label span {
-    margin-left: 20;
+    margin-left: 20px;
 }
 
 input.form-control-custom + label::before {
@@ -1478,7 +1496,7 @@ button {
     width: 100%;
     height: 1px;
     border-bottom: 1px dashed #eee;
-    margin: 20 0 30;
+    margin: 20px 0 30px;
 }
 
 .forms p {
@@ -1640,7 +1658,7 @@ button {
 * ==========================================================
 */
 .datepicker-dropdown.dropdown-menu {
-    width: 300;
+    width: 300px;
     margin-top: 0;
 }
 
@@ -1664,7 +1682,7 @@ button {
 }
 
 .datepicker-days {
-    width: 300;
+    width: 300px;
 }
 
 .bootstrap-touchspin {
@@ -1694,7 +1712,7 @@ button {
 }
 
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-    width: 300;
+    width: 300px;
 }
 
 /*
@@ -1705,7 +1723,7 @@ button {
 .bootstrap-tagsinput .label-info {
     background-color: #2b90d9;
     display: inline-block;
-    padding: 2px 10;
+    padding: 2px 10px;
     border-radius: 3px;
     font-size: 14px;
     margin: 2px;
@@ -1751,7 +1769,7 @@ button {
 */
 .ms-container {
     background: transparent url("../img/multiselect-switch.png") no-repeat 50% 50%;
-    width: 370;
+    width: 370px;
 }
 
 .ms-container:after {
@@ -1782,7 +1800,7 @@ button {
     border: 1px solid #e6e6e6;
     border-radius: 0;
     position: relative;
-    height: 200;
+    height: 200px;
     padding: 0;
     overflow-y: auto;
 }
@@ -1803,14 +1821,14 @@ button {
 
 .ms-container .ms-optgroup-label {
     margin: 0;
-    padding: 5px 0 0 5px;
+    padding: 5px 0px 0px 5px;
     cursor: pointer;
     color: #999;
 }
 
 .ms-container .ms-selectable li.ms-elem-selectable,
 .ms-container .ms-selection li.ms-elem-selection {
-    padding: 5px 10;
+    padding: 5px 10px;
     color: #212529;
     font-size: 14px;
 }
@@ -1858,7 +1876,7 @@ button {
 }
 
 .note-editor.note-frame .note-editing-area .note-editable {
-    padding: 10;
+    padding: 10px;
     overflow: auto;
     color: #212529;
     background-color: #fff;
@@ -1922,62 +1940,62 @@ button {
 @-webkit-keyframes passing-through {
     0% {
         opacity: 0;
-        -webkit-transform: translateY(40);
-        transform: translateY(40);
+        -webkit-transform: translateY(40px);
+        transform: translateY(40px);
     }
     30%, 70% {
         opacity: 1;
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
     }
     100% {
         opacity: 0;
-        -webkit-transform: translateY(-40);
-        transform: translateY(-40);
+        -webkit-transform: translateY(-40px);
+        transform: translateY(-40px);
     }
 }
 
 @keyframes passing-through {
     0% {
         opacity: 0;
-        -webkit-transform: translateY(40);
-        transform: translateY(40);
+        -webkit-transform: translateY(40px);
+        transform: translateY(40px);
     }
     30%, 70% {
         opacity: 1;
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
     }
     100% {
         opacity: 0;
-        -webkit-transform: translateY(-40);
-        transform: translateY(-40);
+        -webkit-transform: translateY(-40px);
+        transform: translateY(-40px);
     }
 }
 
 @-webkit-keyframes slide-in {
     0% {
         opacity: 0;
-        -webkit-transform: translateY(40);
-        transform: translateY(40);
+        -webkit-transform: translateY(40px);
+        transform: translateY(40px);
     }
     30% {
         opacity: 1;
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
     }
 }
 
 @keyframes slide-in {
     0% {
         opacity: 0;
-        -webkit-transform: translateY(40);
-        transform: translateY(40);
+        -webkit-transform: translateY(40px);
+        transform: translateY(40px);
     }
     30% {
         opacity: 1;
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
     }
 }
 
@@ -2012,10 +2030,10 @@ button {
 }
 
 .dropzone {
-    min-height: 150;
+    min-height: 150px;
     border: 2px dashed #dee2e6;
     background: white;
-    padding: 20 20;
+    padding: 20px 20px;
 }
 
 .dropzone.dz-clickable {
@@ -2056,7 +2074,7 @@ button {
     display: inline-block;
     vertical-align: top;
     margin: 16px;
-    min-height: 100;
+    min-height: 100px;
 }
 
 .dropzone .dz-preview:hover {
@@ -2161,8 +2179,8 @@ button {
 
 .dropzone .dz-preview .dz-image {
     overflow: hidden;
-    width: 120;
-    height: 120;
+    width: 120px;
+    height: 120px;
     position: relative;
     display: block;
     z-index: 10;
@@ -2227,8 +2245,8 @@ button {
     left: 50%;
     top: 50%;
     margin-top: -8px;
-    width: 80;
-    margin-left: -40;
+    width: 80px;
+    margin-left: -40px;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 8px;
     overflow: hidden;
@@ -2260,15 +2278,16 @@ button {
     pointer-events: none;
     z-index: 1000;
     position: absolute;
+    display: block;
     display: none;
     opacity: 0;
     -webkit-transition: opacity 0.3s ease;
     transition: opacity 0.3s ease;
     border-radius: 3px;
     font-size: 13px;
-    top: 130;
-    left: -10;
-    width: 140;
+    top: 130px;
+    left: -10px;
+    width: 140px;
     background: #be2626;
     background: -webkit-gradient(linear, left top, left bottom, from(#be2626), to(#a92222));
     background: linear-gradient(to bottom, #be2626, #a92222);
@@ -2304,9 +2323,9 @@ button {
 .login-page .form-outer,
 .register-page .form-outer {
     min-height: 100vh;
-    max-width: 600;
+    max-width: 600px;
     margin: 0 auto;
-    padding: 20 0;
+    padding: 20px 0;
     position: relative;
 }
 
@@ -2322,16 +2341,16 @@ button {
 .register-page .copyrights p {
     font-size: 0.6em;
     font-weight: 300;
-    margin-bottom: 10;
+    margin-bottom: 10px;
 }
 
 .login-page .form-inner,
 .register-page .form-inner {
-    padding: 40 30;
+    padding: 40px 30px;
     background: #fff;
     -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20;
+    margin-bottom: 20px;
 }
 
 .login-page .logo,
@@ -2356,7 +2375,7 @@ button {
 .login-page form,
 .register-page form {
     margin: 2rem auto 1rem;
-    max-width: 300;
+    max-width: 300px;
 }
 
 .login-page a.forgot-pass,
@@ -2385,16 +2404,16 @@ button {
 
 .login-page a.create-account,
 .register-page a.create-account {
-    border-radius: 50;
+    border-radius: 50px;
     font-size: 0.75em;
-    margin-top: 10;
+    margin-top: 10px;
     color: #999;
     text-transform: uppercase;
 }
 
 .login-page .terms-conditions,
 .register-page .terms-conditions {
-    margin-top: 20;
+    margin-top: 20px;
 }
 
 .login-page small,
@@ -2451,9 +2470,9 @@ button {
 * ==========================================================
 */
 .polar-chart-example .chart-container {
-    width: 500;
+    width: 500px;
     max-width: 100%;
-    margin: 20 auto;
+    margin: 20px auto;
 }
 
 /*
@@ -2462,9 +2481,9 @@ button {
 * ==========================================================
 */
 .pie-chart-example .chart-container {
-    width: 500;
+    width: 500px;
     max-width: 100%;
-    margin: 20 auto;
+    margin: 20px auto;
 }
 
 /*
@@ -2473,9 +2492,9 @@ button {
 * ==========================================================
 */
 .radar-chart-example .chart-container {
-    width: 500;
+    width: 500px;
     max-width: 100%;
-    margin: 20 auto;
+    margin: 20px auto;
 }
 
 /* CHARTS MEDIAQUERIES -------------------------- */
@@ -2505,7 +2524,7 @@ button {
     display: inline-block;
     position: absolute;
     left: 50%;
-    bottom: 50;
+    bottom: 50px;
     font-size: 1.2rem;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
@@ -2514,7 +2533,7 @@ button {
 
 .sparklines {
     display: inline-block;
-    margin-left: 20;
+    margin-left: 20px;
 }
 
 /*
@@ -2552,7 +2571,7 @@ button {
 * ==========================================================
 */
 .dataTables_wrapper.container-fluid {
-    padding: 10 5px 0 0;
+    padding: 10px 5px 0 0;
 }
 
 div.dataTables_wrapper div.dataTables_info {
@@ -2593,8 +2612,8 @@ div.dataTables_wrapper div.dataTables_paginate {
 
 .map-custom-popup a.leaflet-popup-close-button {
     display: inline-block;
-    width: 30 !important;
-    height: 30 !important;
+    width: 30px !important;
+    height: 30px !important;
     padding: 0 !important;
     text-align: center;
     vertical-align: middle;
@@ -2602,7 +2621,7 @@ div.dataTables_wrapper div.dataTables_paginate {
     color: #fff !important;
     background: #343a40 !important;
     font-weight: bold;
-    line-height: 30 !important;
+    line-height: 30px !important;
 }
 
 .map-custom-popup .leaflet-popup-content p {
@@ -2620,13 +2639,13 @@ div.dataTables_wrapper div.dataTables_paginate {
 }
 
 .map-custom-popup .popup-venue .image {
-    width: 200;
+    width: 200px;
     background-position: center center;
     background-size: cover;
 }
 
 .map-custom-popup .popup-venue .text {
-    width: 400;
+    width: 400px;
     padding: 1rem;
 }
 
@@ -2698,7 +2717,7 @@ ul.messenger .messenger-message .messenger-actions a {
 }
 
 ul.messenger .messenger-message ul, ul.messenger .messenger-message ol {
-    margin: 10 18px 0;
+    margin: 10px 18px 0;
 }
 
 ul.messenger.messenger-fixed {
@@ -2717,31 +2736,31 @@ ul.messenger.messenger-fixed .message .messenger-actions {
 }
 
 ul.messenger.messenger-fixed.messenger-on-top {
-    top: 20;
+    top: 20px;
 }
 
 ul.messenger.messenger-fixed.messenger-on-bottom {
-    bottom: 20;
+    bottom: 20px;
 }
 
 ul.messenger.messenger-fixed.messenger-on-top, ul.messenger.messenger-fixed.messenger-on-bottom {
     left: 50%;
-    width: 800;
-    margin-left: -400;
+    width: 800px;
+    margin-left: -400px;
 }
 
 ul.messenger.messenger-fixed.messenger-on-top.messenger-on-right, ul.messenger.messenger-fixed.messenger-on-bottom.messenger-on-right {
-    right: 20;
+    right: 20px;
     left: auto;
 }
 
 ul.messenger.messenger-fixed.messenger-on-top.messenger-on-left, ul.messenger.messenger-fixed.messenger-on-bottom.messenger-on-left {
-    left: 20;
-    margin-left: 0;
+    left: 20px;
+    margin-left: 0px;
 }
 
 ul.messenger.messenger-fixed.messenger-on-right, ul.messenger.messenger-fixed.messenger-on-left {
-    width: 350;
+    width: 350px;
 }
 
 ul.messenger.messenger-fixed.messenger-on-right .messenger-actions, ul.messenger.messenger-fixed.messenger-on-left .messenger-actions {
@@ -2917,30 +2936,30 @@ ul.messenger-theme-flat.messenger-empty {
 }
 
 ul.messenger-theme-flat .messenger-message {
-    -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.13), inset 48px 0 0 #292929;
-    box-shadow: inset 0 1px rgba(255, 255, 255, 0.13), inset 48px 0 0 #292929;
-    border-radius: 0;
+    -webkit-box-shadow: inset 0px 1px rgba(255, 255, 255, 0.13), inset 48px 0px 0px #292929;
+    box-shadow: inset 0px 1px rgba(255, 255, 255, 0.13), inset 48px 0px 0px #292929;
+    border-radius: 0px;
     position: relative;
-    border: 0;
-    margin-bottom: 0;
+    border: 0px;
+    margin-bottom: 0px;
     font-size: 13px;
     background: transparent;
     color: #f0f0f0;
     font-weight: 500;
-    padding: 10 30 13px 65px;
+    padding: 10px 30px 13px 65px;
 }
 
 ul.messenger-theme-flat .messenger-message .messenger-close {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 0px;
+    right: 0px;
     color: #888;
     opacity: 1;
     font-weight: bold;
     display: block;
-    font-size: 20;
-    line-height: 20;
-    padding: 8px 10 7px 7px;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 8px 10px 7px 7px;
     cursor: pointer;
     background: transparent;
     border: 0;
@@ -2957,7 +2976,7 @@ ul.messenger-theme-flat .messenger-message .messenger-close:active {
 
 ul.messenger-theme-flat .messenger-message .messenger-actions {
     float: none;
-    margin-top: 10;
+    margin-top: 10px;
 }
 
 ul.messenger-theme-flat .messenger-message .messenger-actions a {
@@ -2966,7 +2985,8 @@ ul.messenger-theme-flat .messenger-message .messenger-actions a {
     color: #aaa;
     background: #2e2e2e;
     display: inline-block;
-    margin-right: 10;
+    padding: 10px;
+    margin-right: 10px;
     padding: 4px 11px 6px;
     text-transform: capitalize;
 }
@@ -3061,21 +3081,21 @@ ul.messenger-theme-flat .messenger-message.alert-error.messenger-retry-later .me
 }
 
 ul.messenger-theme-flat .messenger-message-slot.messenger-last .messenger-message {
-    border-radius: 4px 4px 0 0;
-    -webkit-box-shadow: inset 48px 0 0 #292929;
-    box-shadow: inset 48px 0 0 #292929;
+    border-radius: 4px 4px 0px 0px;
+    -webkit-box-shadow: inset 48px 0px 0px #292929;
+    box-shadow: inset 48px 0px 0px #292929;
 }
 
 ul.messenger-theme-flat .messenger-message-slot.messenger-first .messenger-message {
-    border-radius: 0 0 4px 4px;
-    -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.13), inset 48px 0 0 #292929;
-    box-shadow: inset 0 1px rgba(255, 255, 255, 0.13), inset 48px 0 0 #292929;
+    border-radius: 0px 0px 4px 4px;
+    -webkit-box-shadow: inset 0px 1px rgba(255, 255, 255, 0.13), inset 48px 0px 0px #292929;
+    box-shadow: inset 0px 1px rgba(255, 255, 255, 0.13), inset 48px 0px 0px #292929;
 }
 
 ul.messenger-theme-flat .messenger-message-slot.messenger-first.messenger-last .messenger-message {
     border-radius: 4px;
-    -webkit-box-shadow: inset 48px 0 0 #292929;
-    box-shadow: inset 48px 0 0 #292929;
+    -webkit-box-shadow: inset 48px 0px 0px #292929;
+    box-shadow: inset 48px 0px 0px #292929;
 }
 
 ul.messenger-theme-flat .messenger-spinner {
@@ -3084,6 +3104,7 @@ ul.messenger-theme-flat .messenger-spinner {
     left: 7px;
     top: 50%;
     margin-top: -18px;
+    z-index: 999;
     height: 32px;
     width: 32px;
     z-index: 10;
@@ -3120,7 +3141,7 @@ ul.messenger-theme-flat .messenger-spinner {
 }
 
 .fc .panel {
-    padding: 20;
+    padding: 20px;
     background: #fff;
 }
 
@@ -3143,8 +3164,8 @@ ul.messenger-theme-flat .messenger-spinner {
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-left: -20 !important;
-    margin-top: -20 !important;
+    margin-left: -20px !important;
+    margin-top: -20px !important;
 }
 
 /*
@@ -3162,7 +3183,7 @@ ul.messenger-theme-flat .messenger-spinner {
 
 .infobox {
     font-family: "Roboto", sans-serif;
-    width: 800;
+    width: 800px;
     background: #fff;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -3171,13 +3192,13 @@ ul.messenger-theme-flat .messenger-spinner {
 
 @media (max-width: 991px) {
     .infobox {
-        max-width: 600;
+        max-width: 600px;
     }
 }
 
 @media (max-width: 767px) {
     .infobox {
-        max-width: 350;
+        max-width: 350px;
     }
 }
 
@@ -3200,8 +3221,8 @@ ul.messenger-theme-flat .messenger-spinner {
 
 .infobox .text {
     display: table-cell;
-    width: 450;
-    padding: 40 20 20 40;
+    width: 450px;
+    padding: 40px 20px 20px 40px;
     vertical-align: top;
 }
 
@@ -3220,7 +3241,7 @@ ul.messenger-theme-flat .messenger-spinner {
 .infobox .image {
     display: table-cell;
     position: relative;
-    width: 350;
+    width: 350px;
     height: 100%;
     background-size: cover;
     background-position-x: center;
@@ -3245,8 +3266,8 @@ ul.messenger-theme-flat .messenger-spinner {
  *
  */
 .sk-rotating-plane {
-    width: 40;
-    height: 40;
+    width: 40px;
+    height: 40px;
     background-color: #2b90d9;
     margin: 0;
     -webkit-animation: sk-rotatePlane 1.2s infinite ease-in-out;
@@ -3255,31 +3276,31 @@ ul.messenger-theme-flat .messenger-spinner {
 
 @-webkit-keyframes sk-rotatePlane {
     0% {
-        -webkit-transform: perspective(120) rotateX(0deg) rotateY(0deg);
-        transform: perspective(120) rotateX(0deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
     }
     50% {
-        -webkit-transform: perspective(120) rotateX(-180.1deg) rotateY(0deg);
-        transform: perspective(120) rotateX(-180.1deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
     }
     100% {
-        -webkit-transform: perspective(120) rotateX(-180deg) rotateY(-179.9deg);
-        transform: perspective(120) rotateX(-180deg) rotateY(-179.9deg);
+        -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     }
 }
 
 @keyframes sk-rotatePlane {
     0% {
-        -webkit-transform: perspective(120) rotateX(0deg) rotateY(0deg);
-        transform: perspective(120) rotateX(0deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
     }
     50% {
-        -webkit-transform: perspective(120) rotateX(-180.1deg) rotateY(0deg);
-        transform: perspective(120) rotateX(-180.1deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
     }
     100% {
-        -webkit-transform: perspective(120) rotateX(-180deg) rotateY(-179.9deg);
-        transform: perspective(120) rotateX(-180deg) rotateY(-179.9deg);
+        -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     }
 }
 
@@ -3293,8 +3314,8 @@ ul.messenger-theme-flat .messenger-spinner {
  *
  */
 .sk-double-bounce {
-    width: 40;
-    height: 40;
+    width: 40px;
+    height: 40px;
     position: relative;
     margin: 0;
 }
@@ -3353,10 +3374,10 @@ ul.messenger-theme-flat .messenger-spinner {
  */
 .sk-wave {
     margin: 0;
-    width: 50;
-    height: 40;
+    width: 50px;
+    height: 40px;
     text-align: center;
-    font-size: 10;
+    font-size: 10px;
 }
 
 .sk-wave .sk-rect {
@@ -3426,15 +3447,15 @@ ul.messenger-theme-flat .messenger-spinner {
  */
 .sk-wandering-cubes {
     margin: 0;
-    width: 40;
-    height: 40;
+    width: 40px;
+    height: 40px;
     position: relative;
 }
 
 .sk-wandering-cubes .sk-cube {
     background-color: #2b90d9;
-    width: 10;
-    height: 10;
+    width: 10px;
+    height: 10px;
     position: absolute;
     top: 0;
     left: 0;
@@ -3453,21 +3474,21 @@ ul.messenger-theme-flat .messenger-spinner {
         transform: rotate(0deg);
     }
     25% {
-        -webkit-transform: translateX(30) rotate(-90deg) scale(0.5);
-        transform: translateX(30) rotate(-90deg) scale(0.5);
+        -webkit-transform: translateX(30px) rotate(-90deg) scale(0.5);
+        transform: translateX(30px) rotate(-90deg) scale(0.5);
     }
     50% {
         /* Hack to make FF rotate in the right direction */
-        -webkit-transform: translateX(30) translateY(30) rotate(-179deg);
-        transform: translateX(30) translateY(30) rotate(-179deg);
+        -webkit-transform: translateX(30px) translateY(30px) rotate(-179deg);
+        transform: translateX(30px) translateY(30px) rotate(-179deg);
     }
     50.1% {
-        -webkit-transform: translateX(30) translateY(30) rotate(-180deg);
-        transform: translateX(30) translateY(30) rotate(-180deg);
+        -webkit-transform: translateX(30px) translateY(30px) rotate(-180deg);
+        transform: translateX(30px) translateY(30px) rotate(-180deg);
     }
     75% {
-        -webkit-transform: translateX(0) translateY(30) rotate(-270deg) scale(0.5);
-        transform: translateX(0) translateY(30) rotate(-270deg) scale(0.5);
+        -webkit-transform: translateX(0) translateY(30px) rotate(-270deg) scale(0.5);
+        transform: translateX(0) translateY(30px) rotate(-270deg) scale(0.5);
     }
     100% {
         -webkit-transform: rotate(-360deg);
@@ -3481,21 +3502,21 @@ ul.messenger-theme-flat .messenger-spinner {
         transform: rotate(0deg);
     }
     25% {
-        -webkit-transform: translateX(30) rotate(-90deg) scale(0.5);
-        transform: translateX(30) rotate(-90deg) scale(0.5);
+        -webkit-transform: translateX(30px) rotate(-90deg) scale(0.5);
+        transform: translateX(30px) rotate(-90deg) scale(0.5);
     }
     50% {
         /* Hack to make FF rotate in the right direction */
-        -webkit-transform: translateX(30) translateY(30) rotate(-179deg);
-        transform: translateX(30) translateY(30) rotate(-179deg);
+        -webkit-transform: translateX(30px) translateY(30px) rotate(-179deg);
+        transform: translateX(30px) translateY(30px) rotate(-179deg);
     }
     50.1% {
-        -webkit-transform: translateX(30) translateY(30) rotate(-180deg);
-        transform: translateX(30) translateY(30) rotate(-180deg);
+        -webkit-transform: translateX(30px) translateY(30px) rotate(-180deg);
+        transform: translateX(30px) translateY(30px) rotate(-180deg);
     }
     75% {
-        -webkit-transform: translateX(0) translateY(30) rotate(-270deg) scale(0.5);
-        transform: translateX(0) translateY(30) rotate(-270deg) scale(0.5);
+        -webkit-transform: translateX(0) translateY(30px) rotate(-270deg) scale(0.5);
+        transform: translateX(0) translateY(30px) rotate(-270deg) scale(0.5);
     }
     100% {
         -webkit-transform: rotate(-360deg);
@@ -3510,8 +3531,8 @@ ul.messenger-theme-flat .messenger-spinner {
  *
  */
 .sk-spinner-pulse {
-    width: 40;
-    height: 40;
+    width: 40px;
+    height: 40px;
     margin: 0;
     background-color: #2b90d9;
     border-radius: 100%;
@@ -3554,8 +3575,8 @@ ul.messenger-theme-flat .messenger-spinner {
  */
 .sk-chasing-dots {
     margin: 0;
-    width: 40;
-    height: 40;
+    width: 40px;
+    height: 40px;
     position: relative;
     text-align: center;
     -webkit-animation: sk-chasingDotsRotate 2s infinite linear;
@@ -3629,13 +3650,13 @@ ul.messenger-theme-flat .messenger-spinner {
  */
 .sk-three-bounce {
     margin: 0;
-    width: 80;
+    width: 80px;
     text-align: center;
 }
 
 .sk-three-bounce .sk-child {
-    width: 20;
-    height: 20;
+    width: 20px;
+    height: 20px;
     background-color: #2b90d9;
     border-radius: 100%;
     display: inline-block;
@@ -3696,8 +3717,8 @@ ul.messenger-theme-flat .messenger-spinner {
  */
 .sk-circle {
     margin: 0;
-    width: 40;
-    height: 40;
+    width: 40px;
+    height: 40px;
     position: relative;
 }
 
@@ -3870,8 +3891,8 @@ ul.messenger-theme-flat .messenger-spinner {
  *
  */
 .sk-cube-grid {
-    width: 40;
-    height: 40;
+    width: 40px;
+    height: 40px;
     margin: 0;
     /*
      * Spinner positions
@@ -3978,8 +3999,8 @@ ul.messenger-theme-flat .messenger-spinner {
  */
 .sk-fading-circle {
     margin: 0;
-    width: 40;
-    height: 40;
+    width: 40px;
+    height: 40px;
     position: relative;
 }
 
@@ -4144,8 +4165,8 @@ ul.messenger-theme-flat .messenger-spinner {
  */
 .sk-folding-cube {
     margin: 0;
-    width: 40;
-    height: 40;
+    width: 40px;
+    height: 40px;
     position: relative;
     -webkit-transform: rotateZ(45deg);
     transform: rotateZ(45deg);
@@ -4206,36 +4227,36 @@ ul.messenger-theme-flat .messenger-spinner {
 
 @-webkit-keyframes sk-foldCubeAngle {
     0%, 10% {
-        -webkit-transform: perspective(140) rotateX(-180deg);
-        transform: perspective(140) rotateX(-180deg);
+        -webkit-transform: perspective(140px) rotateX(-180deg);
+        transform: perspective(140px) rotateX(-180deg);
         opacity: 0;
     }
     25%, 75% {
-        -webkit-transform: perspective(140) rotateX(0deg);
-        transform: perspective(140) rotateX(0deg);
+        -webkit-transform: perspective(140px) rotateX(0deg);
+        transform: perspective(140px) rotateX(0deg);
         opacity: 1;
     }
     90%, 100% {
-        -webkit-transform: perspective(140) rotateY(180deg);
-        transform: perspective(140) rotateY(180deg);
+        -webkit-transform: perspective(140px) rotateY(180deg);
+        transform: perspective(140px) rotateY(180deg);
         opacity: 0;
     }
 }
 
 @keyframes sk-foldCubeAngle {
     0%, 10% {
-        -webkit-transform: perspective(140) rotateX(-180deg);
-        transform: perspective(140) rotateX(-180deg);
+        -webkit-transform: perspective(140px) rotateX(-180deg);
+        transform: perspective(140px) rotateX(-180deg);
         opacity: 0;
     }
     25%, 75% {
-        -webkit-transform: perspective(140) rotateX(0deg);
-        transform: perspective(140) rotateX(0deg);
+        -webkit-transform: perspective(140px) rotateX(0deg);
+        transform: perspective(140px) rotateX(0deg);
         opacity: 1;
     }
     90%, 100% {
-        -webkit-transform: perspective(140) rotateY(180deg);
-        transform: perspective(140) rotateY(180deg);
+        -webkit-transform: perspective(140px) rotateY(180deg);
+        transform: perspective(140px) rotateY(180deg);
         opacity: 0;
     }
 }
@@ -4250,7 +4271,7 @@ STYLE SWITCHER FOR DEMO
 #style-switch-button {
     position: fixed;
     top: 120px;
-    right: 0;
+    right: 0px;
     border-radius: 0;
     z-index: 2;
 }
@@ -4260,7 +4281,7 @@ STYLE SWITCHER FOR DEMO
     padding: 20px;
     position: fixed;
     top: 160px;
-    right: 0;
+    right: 0px;
     background: #fff;
     border: solid 1px #ced4da;
     z-index: 2000;
