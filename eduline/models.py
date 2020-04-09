@@ -92,9 +92,9 @@ class Checkout(models.Model):
     collected = models.BooleanField(default=False)
     overdue = models.BooleanField(default=False)
     closed = models.BooleanField(default=False)
-    reserved_date = models.DateTimeField(null=True, blank=True)
-    collected_date = models.DateTimeField(null=True, blank=True)
-    returned_date = models.DateTimeField(null=True, blank=True)
+    reserved_date = models.DateField(null=True, blank=True)
+    collected_date = models.DateField(null=True, blank=True)
+    returned_date = models.DateField(null=True, blank=True)
     fine = models.DecimalField(decimal_places=2, default=0, max_digits=10)
 
     def __str__(self):

@@ -1,9 +1,10 @@
+from datetime import datetime, timedelta
+
 from django.contrib.auth.views import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, InvalidPage
 from django.db.models import Sum
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
-from django.utils.timezone import now, timedelta
 
 from .filters import BookFilter
 from .models import *
@@ -25,7 +26,7 @@ def faq(request):
 @login_required
 def dashboard(request):
     if request.user.is_staff:
-        today = now().date()
+        today = datetime.today()
         seven_days_ago = today - timedelta(days=7)
         five_days_ago = today - timedelta(days=5)
         two_months_ago = today - timedelta(days=60)
@@ -121,7 +122,8 @@ def reserve(request, pk):
     # TODO: configure checks to ensure user cannot reserve books that they have reserved or collected.
 
     book = Book.objects.get(id=pk)
-    record = Checkout.objects.create(student=request.user.student, book=book, reserved=True, reserved_date=now())
+    record = Checkout.objects.create(student=request.user.student, book=book, reserved=True,
+                                     reserved_date=datetime.today())
     record.save()
     book.reserve_book()
     book.save()
@@ -176,9 +178,8 @@ def check_due_dates(request):
             for item in pending_history:
                 pickup_date = item.collected_date
                 reserved_date = item.reserved_date
-                today = now()
                 if pickup_date is None:
-                    duration_reserved = today.date() - reserved_date.date()
+                    duration_reserved = datetime.today() - reserved_date.date()
                     if duration_reserved.days > 1:
                         item.closed = True
                         item.save()
@@ -186,7 +187,7 @@ def check_due_dates(request):
                         book.cancel_reservation()
                         book.save()
                 else:
-                    duration_collected = today.date() - pickup_date.date()
+                    duration_collected = datetime.today() - pickup_date.date()
                     if duration_collected.days <= 10:
                         pass
                     elif duration_collected.days == 11:

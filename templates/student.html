@@ -164,7 +164,7 @@
                                 <div class="tab-pane text-center gallery" id="overdue">
                                     <div class="row no-gutters">
                                         {% for item in pending_history %}
-                                            {% if item.id|is_overdue %}
+                                            {% if item.id.overdue %}
                                                 <div class="col-12 col-md-6 col-lg-4">
                                                     <div class="clean-product-item">
                                                         <div class="image">
