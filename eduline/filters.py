@@ -1,7 +1,8 @@
 import django_filters
 from django import forms
+from django.db.models import Q
 
-from .models import Book, Category
+from .models import Book, Category, Message
 
 
 class BookFilter(django_filters.FilterSet):
@@ -13,3 +14,17 @@ class BookFilter(django_filters.FilterSet):
     class Meta:
         model = Book
         fields = ['title', 'category', 'author', ]
+
+
+class MessageFilter(django_filters.FilterSet):
+    q = django_filters.CharFilter(method='my_custom_filter')
+
+    class Meta:
+        model = Message
+        fields = ['q']
+
+    def my_custom_filter(self, queryset, name, value):
+        return Message.objects.filter(
+            Q(name__icontains=value) | Q(message__icontains=value) | Q(email__icontains=value) | Q(
+                subject__icontains=value)
+        )

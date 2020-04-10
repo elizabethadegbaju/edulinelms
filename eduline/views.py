@@ -6,7 +6,8 @@ from django.db.models import Sum
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 
-from .filters import BookFilter
+from .filters import BookFilter, MessageFilter
+from .forms import *
 from .models import *
 
 
@@ -26,7 +27,7 @@ def faq(request):
 @login_required
 def dashboard(request):
     if request.user.is_staff:
-        today = datetime.today()
+        today = datetime.today().date()
         seven_days_ago = today - timedelta(days=7)
         five_days_ago = today - timedelta(days=5)
         two_months_ago = today - timedelta(days=60)
@@ -111,8 +112,8 @@ def search(request):
         books = paginator.get_page(1)
     except InvalidPage:
         books = paginator.get_page(paginator.num_pages)
-    if request.user.is_staff == True:
-        return render(request, 'books-admin.html', context={'filter': book_filter, 'books': books})
+    if request.user.is_staff:
+        return render(request, 'books-staff.html', context={'filter': book_filter, 'books': books})
     else:
         return render(request, 'books.html', context={'filter': book_filter, 'books': books})
 
@@ -179,7 +180,7 @@ def check_due_dates(request):
                 pickup_date = item.collected_date
                 reserved_date = item.reserved_date
                 if pickup_date is None:
-                    duration_reserved = datetime.today() - reserved_date.date()
+                    duration_reserved = datetime.today().date() - reserved_date
                     if duration_reserved.days > 1:
                         item.closed = True
                         item.save()
@@ -187,7 +188,7 @@ def check_due_dates(request):
                         book.cancel_reservation()
                         book.save()
                 else:
-                    duration_collected = datetime.today() - pickup_date.date()
+                    duration_collected = datetime.today().date() - pickup_date
                     if duration_collected.days <= 10:
                         pass
                     elif duration_collected.days == 11:
@@ -205,12 +206,32 @@ def check_due_dates(request):
 
 
 def add_book(request):
-    if request.method == 'GET':
-        return render(request, 'book-form.html')
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            pass
+    else:
+        form = BookForm()
+    return render(request, 'book-form.html', context={'form': form})
 
 
-def edit_book(request):
-    return render(request, '')
+def edit_book(request, pk):
+    book = Book.objects.get(id=pk)
+    data = {
+        'title': book.title,
+        'author': book.author,
+        'category': book.category,
+        'description': book.description,
+        'quantity_total': book.quantity_total,
+        'image': book.image,
+    }
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            pass
+    else:
+        form = BookForm(data)
+    return render(request, 'book-form.html', context={'form': form})
 
 
 def defaulters(request):
@@ -219,4 +240,21 @@ def defaulters(request):
 
 
 def messages(request):
-    return render(request, '')
+    messages_list = Message.objects.order_by('-time')
+    messages_filter = MessageFilter(request.GET, queryset=messages_list)
+    return render(request, 'messages.html', context={'filter': messages_filter})
+
+
+def add_author(request):
+    name = request.POST['name']
+    description = request.POST['description']
+    author = Author.objects.create(name=name, description=description)
+    author.save()
+    return redirect(add_book)
+
+
+def add_category(request):
+    name = request.POST['name']
+    category = Category.objects.create(name=name)
+    category.save()
+    return redirect(add_book)

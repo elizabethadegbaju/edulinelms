@@ -21,4 +21,6 @@ urlpatterns = [
     path('dashboard/books/<int:pk>/', views.edit_book, name='edit_book'),
     path('dashboard/defaulters/', views.defaulters, name='defaulters'),
     path('dashboard/messages/', views.messages, name='messages'),
+    path('dashboard/add-author/', views.add_author, name="add_author"),
+    path('dashboard/add-category/', views.add_category, name='add_category'),
 ]

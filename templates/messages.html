@@ -1,0 +1,58 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load humanize %}
+{% block main %}
+    <div class="page">
+        <!-- Breadcrumb-->
+        <div class="breadcrumb-holder">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Messages</li>
+                </ul>
+            </div>
+        </div>
+        <section>
+            <div class="container-fluid">
+                <!-- Page Header-->
+                <header>
+                    <h1 class="h3 display">Users' Messages and Complaints</h1>
+                </header>
+                <div class="mr-auto ml-auto">
+                    <div class="card">
+                        <div class="card-header">
+                            <form method="get">
+                                <div class="input-group">
+                                    {% render_field filter.form.q type="text" placeholder="Search Messages" class="form-control" %}
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-outline-secondary"><i
+                                                class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="list-group card-list-group">
+                            {% for message in filter.qs %}
+                                <div class="list-group-item py-5">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <div class="media-heading">
+                                                <small class="float-right">{{ message.time|timesince }} ago</small>
+                                                <h5>{{ message.name }} <{{ message.email }}></h5>
+                                            </div>
+                                            <div class="text-muted text-small">
+                                                {{ message.message }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

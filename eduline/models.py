@@ -2,9 +2,6 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-# Create your models here.
-
-
 class Student(models.Model):
     user = models.OneToOneField(to=User, on_delete=models.CASCADE)
     matric_number = models.CharField(max_length=20)
@@ -97,6 +94,9 @@ class Checkout(models.Model):
     returned_date = models.DateField(null=True, blank=True)
     fine = models.DecimalField(decimal_places=2, default=0, max_digits=10)
 
+    class Meta:
+        ordering = ['student']
+
     def __str__(self):
         return self.student.__str__() + " - " + self.book.__str__()
 
@@ -113,6 +113,10 @@ class Message(models.Model):
     email = models.EmailField()
     message = models.TextField()
     read = models.BooleanField(default=False)
+    time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['time']
 
     def __str__(self):
         return self.subject + " -- " + self.email
