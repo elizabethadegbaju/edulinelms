@@ -28,19 +28,28 @@
                                     <div class="price">
                                         <h3>{{ book.author }}</h3>
                                     </div>
-                                    {% if available %}
-
-                                        <form action="{% url 'reserve'  book.id %}" method="get">
-                                            <button class="btn btn-primary" type="submit"><i class="icon-book-open"></i>Click
-                                                to Reserve
+                                    {% if user.is_staff %}
+                                        <form action="{% url 'history'  book.id %}" method="get">
+                                            <button class="btn btn-primary" type="submit"><i
+                                                    class="icon-notebook"></i>View History
+                                            </button>
+                                        </form>
+                                        <form action="{% url 'edit_book'  book.id %}" method="get">
+                                            <button class="btn btn-primary" type="submit"><i
+                                                    class="icon-pencil"></i>Edit Details
                                             </button>
                                         </form>
                                     {% else %}
-                                        <button class="btn btn-secondary" type="submit" disabled><i
-                                                class="icon-book-open"></i>Click to Reserve
-                                        </button>
-                                        <h6 class="text-secondary"><em>This book is currently not available for pick
-                                            up. Check back tomorrow.</em></h6>
+                                        {% if available %}
+
+
+                                        {% else %}
+                                            <button class="btn btn-secondary" type="submit" disabled><i
+                                                    class="icon-book-open"></i>Click to Reserve
+                                            </button>
+                                            <h6 class="text-secondary"><em>This book is currently not available for pick
+                                                up. Check back tomorrow.</em></h6>
+                                        {% endif %}
                                     {% endif %}
                                     <div class="summary">
                                         <p>{{ book.description|truncatewords:70 }}</p>

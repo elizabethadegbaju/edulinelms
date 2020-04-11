@@ -207,31 +207,25 @@ def check_due_dates(request):
 
 def add_book(request):
     if request.method == 'POST':
-        form = BookForm(request.POST)
+        form = BookForm(request.POST, request.FILES)
         if form.is_valid():
-            pass
+            form.save()
+            return redirect(search)
     else:
         form = BookForm()
-    return render(request, 'book-form.html', context={'form': form})
+    return render(request, 'add-book.html', context={'form': form})
 
 
 def edit_book(request, pk):
     book = Book.objects.get(id=pk)
-    data = {
-        'title': book.title,
-        'author': book.author,
-        'category': book.category,
-        'description': book.description,
-        'quantity_total': book.quantity_total,
-        'image': book.image,
-    }
     if request.method == 'POST':
-        form = BookForm(request.POST)
+        form = BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
-            pass
+            form.save()
+            return redirect(book, pk)
     else:
-        form = BookForm(data)
-    return render(request, 'book-form.html', context={'form': form})
+        form = BookForm(instance=book)
+        return render(request, 'edit-book.html', context={'form': form})
 
 
 def defaulters(request):
@@ -258,3 +252,8 @@ def add_category(request):
     category = Category.objects.create(name=name)
     category.save()
     return redirect(add_book)
+
+
+def history(request, pk):
+    history = Checkout.objects.filter(book__id=pk)
+    return render(request, 'history.html', context={'history': history})

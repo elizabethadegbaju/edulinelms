@@ -1,0 +1,149 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block main %}
+    <div class="page">
+        <!-- Breadcrumb-->
+        <div class="breadcrumb-holder">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Add a new book</li>
+                </ul>
+            </div>
+        </div>
+        <section class="forms">
+            <div class="container-fluid">
+                <!-- Page Header-->
+                <header>
+                    <h1 class="h3 display">Add a new book </h1>
+                </header>
+                <div class="mr-auto ml-auto">
+                    <div class="d-block">
+                        <!-- Add Author Button-->
+                        <button type="button" data-toggle="modal" data-target="#addAuthor"
+                                class="btn btn-primary">Add an Author
+                        </button>
+                        <!-- Add Author Modal-->
+                        <div id="addAuthor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true" class="modal fade text-left">
+                            <div role="document" class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 id="exampleModalLabel" class="modal-title">Add an Author</h5>
+                                        <button type="button" data-dismiss="modal" aria-label="Close"
+                                                class="close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <form action="{% url 'add_author' %}" method="post">
+                                        <div class="modal-body">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <label>Name:</label>
+                                                <input type="text" placeholder="Author's full name"
+                                                       class="form-control" required name="name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Description:</label>
+                                                <textarea placeholder="Optional Background Description on Author"
+                                                          class="form-control" name="description"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" data-dismiss="modal" class="btn btn-secondary">
+                                                Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add Author Button-->
+                        <button type="button" data-toggle="modal" data-target="#addCategory"
+                                class="btn btn-primary">Add a Category
+                        </button>
+                        <!-- Add Author Modal-->
+                        <div id="addCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true" class="modal fade text-left">
+                            <div role="document" class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 id="exampleModalLabel" class="modal-title">Add a Category</h5>
+                                        <button type="button" data-dismiss="modal" aria-label="Close"
+                                                class="close"><span aria-hidden="true">×</span></button>
+                                    </div>
+                                    <form action="{% url 'add_category' %}" method="post">
+                                        <div class="modal-body">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <label>Name:</label>
+                                                <input type="text" placeholder="Category Name"
+                                                       class="form-control" required name="name">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" data-dismiss="modal" class="btn btn-secondary">
+                                                Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center">
+                            <h4>Book Details</h4>
+                        </div>
+                        <div class="card-body">
+
+                            <form action="{% url 'add_book' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label>{{ form.title.label_tag }}</label>
+                                    {% render_field form.title type="text" placeholder="Book Title" class="form-control" %}
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form.author.label_tag }}</label>
+                                    {#                                    <select name="{{ form.author.name }}" class="form-control">#}
+                                    {#                                        {% for choice in form.author %}#}
+                                    {#                                            <option value="{{ choice.tag }}">{{ choice.choice_label }}</option>#}
+                                    {#                                        {% endfor %}#}
+                                    {#                                    </select>#}
+                                    {% render_field form.author class="form-control" %}
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form.description.label_tag }}</label>
+                                    {% render_field form.description class="form-control" %}
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form.category.label_tag }}</label>
+                                    {#                                    <select multiple class="form-control" name="{{ form.category.name }}">#}
+                                    {#                                        {% for choice in form.category %}#}
+                                    {#                                            <option value="{{ choice.tag }}">{{ choice.choice_label }}</option>#}
+                                    {#                                        {% endfor %}#}
+                                    {#                                    </select>#}
+                                    {% render_field form.category class="form-control" %}
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form.quantity_total.label_tag }}</label>
+                                    {% render_field form.quantity_total type="number" placeholder="Quantity" class="form-control" %}
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ form.image.label_tag }}</label>
+                                    {% render_field form.image class="form-control-file" %}
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Save" class="btn btn-primary">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}
