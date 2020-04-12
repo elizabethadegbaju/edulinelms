@@ -1,1 +1,180 @@
-{% %}
+{% extends 'base_dashboard.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load humanize %}
+{% block title %}
+    {{ book.title }} - History | EduLine Dashboard
+{% endblock %}
+{% block main %}
+    <div class="page">
+        <!-- Breadcrumb-->
+        <div class="breadcrumb-holder">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'book' book.id %}">{{ book.title }}</a></li>
+                    <li class="breadcrumb-item active">History</li>
+                </ul>
+            </div>
+        </div>
+        <section class="forms">
+            <div class="container-fluid">
+                <!-- Page Header-->
+                <header>
+                    <h1 class="h3 display">{{ book }}</h1>
+                </header>
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="d-none d-md-block">
+                                <form method="get">
+                                    <div class="filters">
+                                        <div class="form-group">
+                                            {{ filter.form.matric_no.label_tag }}
+                                            {% render_field filter.form.matric_no class="form-control" %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ filter.form.student_f_name.label_tag }}
+                                            {% render_field filter.form.student_f_name class="form-control" %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ filter.form.student_l_name.label_tag }}
+                                            {% render_field filter.form.student_l_name class="form-control" %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ filter.form.reserved.label_tag }}
+                                            {% render_field filter.form.reserved class="form-control" %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ filter.form.collected.label_tag }}
+                                            {% render_field filter.form.collected class="form-control" %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ filter.form.overdue.label_tag }}
+                                            {% render_field filter.form.overdue class="form-control" %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ filter.form.closed.label_tag }}
+                                            {% render_field filter.form.closed class="form-control" %}
+                                        </div>
+                                        <button type="submit" class="btn btn-info form-control mb-5">
+                                            <span class="icon-magnifier"></span> Search
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="products">
+                                <div class="row no-gutters">
+                                    {% for entry in filter.qs %}
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">{{ entry.student.matric_number }}
+                                                        - {{ entry.student.user.get_full_name }}</h4>
+                                                    {% if entry.reserved %}
+                                                        <p class="card-text">
+                                                            Reserved: {{ entry.reserved_date|naturalday }}</p>
+                                                    {% endif %}
+                                                    {% if entry.collected %}
+                                                        <p class="card-text">
+                                                            Collected: {{ entry.collected_date|naturalday }}
+                                                        </p>
+                                                    {% endif %}
+                                                    {% if entry.closed %}
+                                                        <p class="card-text">
+                                                            Closed: {{ entry.closed_date|naturalday }}
+                                                        </p>
+                                                        <button data-toggle="modal" href="#statusModal"
+                                                                class="btn btn-outline-info" disabled="">Change Status
+                                                        </button>
+                                                    {% else %}
+                                                        <a data-toggle="modal" href="#statusModal"
+                                                           class="btn btn-outline-info">Change Status</a>
+                                                    {% endif %}
+                                                    <div id="statusModal" tabindex="-1" role="dialog"
+                                                         aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                                         class="modal fade text-left">
+                                                        <div role="document" class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 id="exampleModalLabel" class="modal-title">
+                                                                        Change Status
+                                                                        - {{ entry.student.matric_number }}</h5>
+                                                                    <button type="button" data-dismiss="modal"
+                                                                            aria-label="Close" class="close">
+                                                                        <span aria-hidden="true">×</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>Once marked as closed, this entry can no longer
+                                                                        be edited</p>
+                                                                    <form action="{% url 'update' entry.id %}"
+                                                                          method="post">
+                                                                        {% csrf_token %}
+                                                                        <div class="i-checks">
+                                                                            <input id="reserved" name="reserved"
+                                                                                   type="checkbox"
+                                                                                    {% if entry.reserved %}
+                                                                                   checked=""
+                                                                                    {% endif %}
+                                                                                   class="form-control-custom">
+                                                                            <label for="reserved">Reserved</label>
+                                                                        </div>
+                                                                        <div class="i-checks">
+                                                                            <input id="collected" name="collected"
+                                                                                   type="checkbox"
+                                                                                    {% if entry.collected %}
+                                                                                   checked=""
+                                                                                    {% endif %}
+                                                                                   class="form-control-custom">
+                                                                            <label for="collected">Collected</label>
+                                                                        </div>
+                                                                        <div class="i-checks">
+                                                                            <input id="closed" name="closed"
+                                                                                   type="checkbox"
+                                                                                    {% if entry.closed %}
+                                                                                   checked=""
+                                                                                    {% endif %}
+                                                                                   class="form-control-custom">
+                                                                            <label for="closed">Closed</label>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" data-dismiss="modal"
+                                                                                    class="btn btn-secondary">Close
+                                                                            </button>
+                                                                            <button type="submit" class="btn btn-info">
+                                                                                Save changes
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer text-muted">
+                                                    {% if entry.closed %}
+                                                        Closed
+                                                    {% else %}
+                                                        Active
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% empty %}
+                                        <div class="text-center">
+                                            <h5 class="text-secondary m-4">Sorry, no entries match your request.</h5>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}

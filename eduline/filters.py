@@ -2,7 +2,7 @@ import django_filters
 from django import forms
 from django.db.models import Q
 
-from .models import Book, Category, Message
+from .models import Book, Category, Message, Checkout
 
 
 class BookFilter(django_filters.FilterSet):
@@ -28,3 +28,19 @@ class MessageFilter(django_filters.FilterSet):
             Q(name__icontains=value) | Q(message__icontains=value) | Q(email__icontains=value) | Q(
                 subject__icontains=value)
         )
+
+
+class CheckoutFilter(django_filters.FilterSet):
+    matric_no = django_filters.CharFilter(field_name='student__matric_number', lookup_expr='icontains',
+                                          label='Student\'s Matric Number')
+    student_f_name = django_filters.CharFilter(field_name="student__user__first_name", lookup_expr='icontains',
+                                               label='Student\'s First Name')
+    student_l_name = django_filters.CharFilter(field_name="student__user__last_name", lookup_expr='icontains',
+                                               label='Student\'s Last Name')
+
+    # reserved = django_filters.BooleanFilter(field_name='reserved')
+    # collected = django_filters.BooleanFilter(field_name='')
+
+    class Meta:
+        model = Checkout
+        fields = ['student', 'reserved', 'collected', 'overdue', 'closed']

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -91,7 +93,7 @@ class Checkout(models.Model):
     closed = models.BooleanField(default=False)
     reserved_date = models.DateField(null=True, blank=True)
     collected_date = models.DateField(null=True, blank=True)
-    returned_date = models.DateField(null=True, blank=True)
+    closed_date = models.DateField(null=True, blank=True)
     fine = models.DecimalField(decimal_places=2, default=0, max_digits=10)
 
     class Meta:
@@ -105,6 +107,18 @@ class Checkout(models.Model):
 
     def charge_subsequent_fines(self, days):
         self.fine = ((days - 1) * 100) + 500
+
+    def close(self):
+        self.closed = True
+        self.closed_date = datetime.today()
+
+    def reserve(self):
+        self.reserved = True
+        self.reserved_date = datetime.today()
+
+    def collect(self):
+        self.collected = True
+        self.collected_date - datetime.today()
 
 
 class Message(models.Model):

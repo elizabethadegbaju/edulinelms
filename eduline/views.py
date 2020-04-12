@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from django.contrib.auth.views import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, InvalidPage
@@ -6,7 +6,7 @@ from django.db.models import Sum
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 
-from .filters import BookFilter, MessageFilter
+from .filters import BookFilter, MessageFilter, CheckoutFilter
 from .forms import *
 from .models import *
 
@@ -176,15 +176,15 @@ def check_due_dates(request):
         if pending_history is None:
             return HttpResponse(status='200')
         else:
-            for item in pending_history:
-                pickup_date = item.collected_date
-                reserved_date = item.reserved_date
+            for entry in pending_history:
+                pickup_date = entry.collected_date
+                reserved_date = entry.reserved_date
                 if pickup_date is None:
                     duration_reserved = datetime.today().date() - reserved_date
                     if duration_reserved.days > 1:
-                        item.closed = True
-                        item.save()
-                        book = Book.objects.get(item.book)
+                        entry.close()
+                        entry.save()
+                        book = Book.objects.get(entry.book)
                         book.cancel_reservation()
                         book.save()
                 else:
@@ -192,14 +192,14 @@ def check_due_dates(request):
                     if duration_collected.days <= 10:
                         pass
                     elif duration_collected.days == 11:
-                        item.charge_initial_fine()
-                        item.overdue = True
-                        item.save()
+                        entry.charge_initial_fine()
+                        entry.overdue = True
+                        entry.save()
                     else:
-                        item.charge_subsequent_fines(duration_collected.days - 10)
-                        item.overdue = True
-                        item.save()
-                    update_student(item.student.id)
+                        entry.charge_subsequent_fines(duration_collected.days - 10)
+                        entry.overdue = True
+                        entry.save()
+                    update_student(entry.student.id)
     else:
         return HttpResponse(status="403")
     return HttpResponse(status='200')
@@ -255,5 +255,23 @@ def add_category(request):
 
 
 def history(request, pk):
-    history = Checkout.objects.filter(book__id=pk)
-    return render(request, 'history.html', context={'history': history})
+    book = Book.objects.get(id=pk)
+    history_list = Checkout.objects.filter(book__id=pk)
+    history_filter = CheckoutFilter(request.GET, queryset=history_list)
+    return render(request, 'history.html', context={'filter': history_filter, 'book': book})
+
+
+def update(request, pk):
+    entry = Checkout.objects.get(id=pk)
+    reserved = request.POST['reserved']
+    collected = request.POST['collected']
+    closed = request.POST['closed']
+
+    if (reserved == 'on') & (entry.reserved != True):
+        entry.reserve()
+    if (collected == 'on') & (entry.collected != True):
+        entry.collect()
+    if (closed == 'on') & (entry.closed != True):
+        entry.close()
+    entry.save()
+    return redirect(history, entry.book.id)
