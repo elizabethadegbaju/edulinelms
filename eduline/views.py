@@ -49,18 +49,31 @@ def dashboard(request):
             collected_date__range=(two_months_ago, today)).count()
 
         # number of returned books in the last two weeks:
-        returned_books = Checkout.objects.filter(closed=True).filter(
-            returned_date__range=(two_weeks_ago, today)).count()
+        closed_transactions = Checkout.objects.filter(closed=True).filter(
+            closed_date__range=(two_weeks_ago, today)).count()
 
         # Total outstanding fines:
         outstanding_fines = Checkout.objects.aggregate(Sum('fine'))
 
-        books = Book.objects.all().count()
+        total_collections = Checkout.objects.filter(collected=True).count()
+        total_overdue = Checkout.objects.filter(overdue=True).count()
+        overdue_percentage = (total_overdue / total_collections) * 100
+
+        books = Book.objects.all()
+        available = 0
+        unavailable = 0
+        for book in books:
+            if book.quantity_total > (book.quantity_collected + book.quantity_reserved):
+                available += 1
+            else:
+                unavailable += 1
 
         return render(request, 'dashboard.html',
                       context={'new_students': new_students, 'reservations': reservations, 'collections': collections,
-                               'overdue_books': overdue_books, 'returned_books': returned_books, 'books': books,
-                               'outstanding_fines': outstanding_fines})
+                               'overdue_books': overdue_books, 'closed_transactions': closed_transactions,
+                               'books': books.count(), 'available': available, 'unavailable': unavailable,
+                               'outstanding_fines': outstanding_fines, 'total_collections': total_collections,
+                               'total_overdue': total_overdue, 'overdue_percentage': overdue_percentage})
     else:
         return redirect('profile', request.user.username)
 
