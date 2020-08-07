@@ -58,9 +58,9 @@
                                     {% for book in books %}
                                         <div class="col-12 col-md-6 col-lg-4">
                                             <div class="clean-product-item">
-                                                <div class="image">
+                                                <div class="image d-flex justify-content-center">
                                                     <a href="{% url 'book' book.id %}">
-                                                        <img class="img-fluid d-block mx-auto"
+                                                        <img class="img-fluid"
                                                              src="https://storage.googleapis.com/silken-phalanx-266122.appspot.com/{{ book.image|urlencode }}"
                                                              alt="Book cover for {{ book.title }}"></a>
                                                 </div>

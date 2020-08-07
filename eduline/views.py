@@ -16,10 +16,6 @@ def home(request):
     return render(request, 'index.html')
 
 
-def about(request):
-    return render(request, 'about-us.html')
-
-
 def faq(request):
     return render(request, 'faq.html')
 
@@ -34,7 +30,8 @@ def dashboard(request):
         two_weeks_ago = today - timedelta(weeks=2)
 
         # number of students that registered in the last seven days:
-        new_students = Student.objects.filter(user__date_joined__range=(seven_days_ago, today)).count()
+        new_students = Student.objects.filter(
+            user__date_joined__range=(seven_days_ago, today)).count()
 
         # number of book reservations in the last five days:
         reservations = Checkout.objects.filter(reserved=True).filter(
@@ -57,23 +54,31 @@ def dashboard(request):
 
         total_collections = Checkout.objects.filter(collected=True).count()
         total_overdue = Checkout.objects.filter(overdue=True).count()
-        overdue_percentage = (total_overdue / total_collections) * 100
+        overdue_percentage = round(((total_overdue / total_collections) *
+                                    100), 2)
 
         books = Book.objects.all()
         available = 0
         unavailable = 0
         for book in books:
-            if book.quantity_total > (book.quantity_collected + book.quantity_reserved):
+            if book.quantity_total > (
+                    book.quantity_collected + book.quantity_reserved):
                 available += 1
             else:
                 unavailable += 1
 
         return render(request, 'dashboard.html',
-                      context={'new_students': new_students, 'reservations': reservations, 'collections': collections,
-                               'overdue_books': overdue_books, 'closed_transactions': closed_transactions,
-                               'books': books.count(), 'available': available, 'unavailable': unavailable,
-                               'outstanding_fines': outstanding_fines, 'total_collections': total_collections,
-                               'total_overdue': total_overdue, 'overdue_percentage': overdue_percentage})
+                      context={'new_students': new_students,
+                               'reservations': reservations,
+                               'collections': collections,
+                               'overdue_books': overdue_books,
+                               'closed_transactions': closed_transactions,
+                               'books': books.count(), 'available': available,
+                               'unavailable': unavailable,
+                               'outstanding_fines': outstanding_fines,
+                               'total_collections': total_collections,
+                               'total_overdue': total_overdue,
+                               'overdue_percentage': overdue_percentage})
     else:
         return redirect('profile', request.user.username)
 
@@ -82,9 +87,13 @@ def dashboard(request):
 def book(request, pk):
     book = Book.objects.get(id=pk)
     categories = book.category.all()
-    available = book.quantity_total > (book.quantity_collected + book.quantity_reserved)
-    similar_books = Book.objects.filter(category__in=categories).distinct().exclude(id=pk)
-    return render(request, 'book.html', context={'book': book, 'similar_books': similar_books, 'available': available})
+    available = book.quantity_total > (
+            book.quantity_collected + book.quantity_reserved)
+    similar_books = Book.objects.filter(
+        category__in=categories).distinct().exclude(id=pk)
+    return render(request, 'book.html',
+                  context={'book': book, 'similar_books': similar_books,
+                           'available': available})
 
 
 def contact(request):
@@ -109,7 +118,8 @@ def register(request):
         user.email = email
         user.is_active = True
         user.save()
-        student = Student.objects.create(matric_number=matric_number, program=program, user=user)
+        student = Student.objects.create(matric_number=matric_number,
+                                         program=program, user=user)
         student.save()
         return redirect('login')
 
@@ -126,9 +136,11 @@ def search(request):
     except InvalidPage:
         books = paginator.get_page(paginator.num_pages)
     if request.user.is_staff:
-        return render(request, 'books-staff.html', context={'filter': book_filter, 'books': books})
+        return render(request, 'books-staff.html',
+                      context={'filter': book_filter, 'books': books})
     else:
-        return render(request, 'books.html', context={'filter': book_filter, 'books': books})
+        return render(request, 'books.html',
+                      context={'filter': book_filter, 'books': books})
 
 
 @login_required
@@ -136,7 +148,8 @@ def reserve(request, pk):
     # TODO: configure checks to ensure user cannot reserve books that they have reserved or collected.
 
     book = Book.objects.get(id=pk)
-    record = Checkout.objects.create(student=request.user.student, book=book, reserved=True,
+    record = Checkout.objects.create(student=request.user.student, book=book,
+                                     reserved=True,
                                      reserved_date=datetime.today())
     record.save()
     book.reserve_book()
@@ -152,11 +165,14 @@ def profile(request, username):
         else:
             student = User.objects.get(username=username)
             pending_history = Checkout.objects.filter(student__user=student)
-            return render(request, 'student.html', context={'pending_history': pending_history})
+            return render(request, 'student.html',
+                          context={'pending_history': pending_history})
     elif username == request.user.username:
         student = request.user
-        pending_history = Checkout.objects.filter(student__user=student, closed=False)
-        return render(request, 'student.html', context={'pending_history': pending_history})
+        pending_history = Checkout.objects.filter(student__user=student,
+                                                  closed=False)
+        return render(request, 'student.html',
+                      context={'pending_history': pending_history})
     else:
         redirect('home')
 
@@ -167,7 +183,8 @@ def submit_message(request):
     email = request.POST['email']
     message = request.POST['message']
 
-    user_message = Message.objects.create(name=name, subject=subject, email=email, message=message)
+    user_message = Message.objects.create(name=name, subject=subject,
+                                          email=email, message=message)
     user_message.save()
 
     return render(request, 'contact-us.html')
@@ -209,7 +226,8 @@ def check_due_dates(request):
                         entry.overdue = True
                         entry.save()
                     else:
-                        entry.charge_subsequent_fines(duration_collected.days - 10)
+                        entry.charge_subsequent_fines(
+                            duration_collected.days - 10)
                         entry.overdue = True
                         entry.save()
                     update_student(entry.student.id)
@@ -249,7 +267,8 @@ def defaulters(request):
 def messages(request):
     messages_list = Message.objects.order_by('-time')
     messages_filter = MessageFilter(request.GET, queryset=messages_list)
-    return render(request, 'messages.html', context={'filter': messages_filter})
+    return render(request, 'messages.html',
+                  context={'filter': messages_filter})
 
 
 def add_author(request):
@@ -271,7 +290,8 @@ def history(request, pk):
     book = Book.objects.get(id=pk)
     history_list = Checkout.objects.filter(book__id=pk)
     history_filter = CheckoutFilter(request.GET, queryset=history_list)
-    return render(request, 'history.html', context={'filter': history_filter, 'book': book})
+    return render(request, 'history.html',
+                  context={'filter': history_filter, 'book': book})
 
 
 def update(request, pk):
