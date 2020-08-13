@@ -296,15 +296,12 @@ def history(request, pk):
 
 def update(request, pk):
     entry = Checkout.objects.get(id=pk)
-    reserved = request.POST['reserved']
-    collected = request.POST['collected']
-    closed = request.POST['closed']
-
-    if (reserved == 'on') & (entry.reserved != True):
+    print(request.POST)
+    if ('reserved' in request.POST) & (entry.reserved != True):
         entry.reserve()
-    if (collected == 'on') & (entry.collected != True):
+    if ('collected' in request.POST) & (entry.collected != True):
         entry.collect()
-    if (closed == 'on') & (entry.closed != True):
+    if ('closed' in request.POST) & (entry.closed != True):
         entry.close()
     entry.save()
     return redirect(history, entry.book.id)

@@ -118,7 +118,7 @@ class Checkout(models.Model):
 
     def collect(self):
         self.collected = True
-        self.collected_date - datetime.today()
+        self.collected_date = datetime.today()
 
 
 class Message(models.Model):
