@@ -86,24 +86,39 @@
                                                         <p class="card-text">
                                                             Closed: {{ entry.closed_date|naturalday }}
                                                         </p>
-                                                        <button data-toggle="modal" href="#statusModal"
-                                                                class="btn btn-outline-info" disabled="">Change Status
+                                                        <button
+                                                                data-toggle="modal"
+                                                                data-target="#statusModal{{ entry.id }}"
+                                                                class="btn btn-outline-info"
+                                                                disabled="">
+                                                            Change Status
                                                         </button>
                                                     {% else %}
-                                                        <a data-toggle="modal" href="#statusModal"
-                                                           class="btn btn-outline-info">Change Status</a>
+                                                        <a
+                                                                data-toggle="modal"
+                                                                data-target="#statusModal{{ entry.id }}"
+                                                                class="btn btn-outline-info">Change
+                                                            Status</a>
                                                     {% endif %}
-                                                    <div id="statusModal" tabindex="-1" role="dialog"
-                                                         aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                                    <div id="statusModal{{ entry.id }}"
+                                                         tabindex="-1"
+                                                         role="dialog"
+                                                         aria-labelledby="exampleModalLabel"
+                                                         aria-hidden="true"
                                                          class="modal fade text-left">
-                                                        <div role="document" class="modal-dialog">
+                                                        <div role="document"
+                                                             class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 id="exampleModalLabel" class="modal-title">
-                                                                        Change Status
+                                                                    <h5 id="exampleModalLabel"
+                                                                        class="modal-title">
+                                                                        Change
+                                                                        Status
                                                                         - {{ entry.student.matric_number }}</h5>
-                                                                    <button type="button" data-dismiss="modal"
-                                                                            aria-label="Close" class="close">
+                                                                    <button type="button"
+                                                                            data-dismiss="modal"
+                                                                            aria-label="Close"
+                                                                            class="close">
                                                                         <span aria-hidden="true">×</span>
                                                                     </button>
                                                                 </div>
@@ -113,39 +128,49 @@
                                                                     <form action="{% url 'update' entry.id %}"
                                                                           method="post">
                                                                         {% csrf_token %}
-                                                                        <div class="i-checks">
-                                                                            <input id="reserved" name="reserved"
+                                                                        <div class="form-group">
+                                                                            <input id="reserved"
+                                                                                   name="reserved"
                                                                                    type="checkbox"
                                                                                     {% if entry.reserved %}
-                                                                                   checked=""
+                                                                                   checked
                                                                                     {% endif %}
-                                                                                   class="form-control-custom">
-                                                                            <label for="reserved">Reserved</label>
+                                                                                   class="form-check-inline">
+                                                                            <label for="reserved"
+                                                                                   class="form-check-label">Reserved</label>
                                                                         </div>
-                                                                        <div class="i-checks">
-                                                                            <input id="collected" name="collected"
+                                                                        <div class="form-group">
+                                                                            <input id="collected"
+                                                                                   name="collected"
                                                                                    type="checkbox"
                                                                                     {% if entry.collected %}
-                                                                                   checked=""
+                                                                                   checked
                                                                                     {% endif %}
-                                                                                   class="form-control-custom">
-                                                                            <label for="collected">Collected</label>
+                                                                                   class="form-check-inline">
+                                                                            <label for="collected"
+                                                                                   class="form-check-label">Collected</label>
                                                                         </div>
-                                                                        <div class="i-checks">
-                                                                            <input id="closed" name="closed"
+                                                                        <div class="form-group">
+                                                                            <input id="closed"
+                                                                                   name="closed"
                                                                                    type="checkbox"
                                                                                     {% if entry.closed %}
-                                                                                   checked=""
+                                                                                   checked
                                                                                     {% endif %}
-                                                                                   class="form-control-custom">
-                                                                            <label for="closed">Closed</label>
+                                                                                   class="form-check-inline">
+                                                                            <label for="closed"
+                                                                                   class="form-check-label">Closed</label>
                                                                         </div>
                                                                         <div class="modal-footer">
-                                                                            <button type="button" data-dismiss="modal"
-                                                                                    class="btn btn-secondary">Close
+                                                                            <button type="button"
+                                                                                    data-dismiss="modal"
+                                                                                    class="btn btn-secondary">
+                                                                                Close
                                                                             </button>
-                                                                            <button type="submit" class="btn btn-info">
-                                                                                Save changes
+                                                                            <button type="submit"
+                                                                                    class="btn btn-primary">
+                                                                                Save
+                                                                                changes
                                                                             </button>
                                                                         </div>
                                                                     </form>
